@@ -16,3 +16,5 @@ Route::post('/create-roles', [RoleController::class, 'storeRole']);
 
 Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
 Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
+
+Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);

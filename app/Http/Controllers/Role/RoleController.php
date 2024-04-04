@@ -71,4 +71,12 @@ class RoleController extends Controller
             return back();
         }
     }
+
+    public function destoryRoleData(Request $request)
+    {
+        $role = Role::find($request->role_id);
+        $role->delete();
+        Session::flash('success-to-delete-role', 'Role ' . $role->role_name . ' Berhasil Dihapus');
+        return redirect(url('/roles'));
+    }
 }
