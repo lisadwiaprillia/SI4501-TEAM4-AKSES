@@ -11,6 +11,18 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
+    public function showDetailRole(Request $request)
+    {
+        $role = Role::find($request->role_id);
+        return view('Admin.Role.role-details', ['role' => $role]);
+    }
+
+    public function showRole()
+    {
+        $roles = Role::all()->sortByDesc('created_at',);
+        return view('Admin.Role.roles', ['roles' => $roles]);
+    }
+
     public function showCreateRoleForm()
     {
         return view('Admin.Role.create-role');
