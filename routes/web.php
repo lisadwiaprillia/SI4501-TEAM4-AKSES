@@ -1,18 +1,20 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Role\RoleController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//* Roles
+
+Route::get('/roles', [RoleController::class, 'showRole']);
+
+Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
+
+Route::get('/create-roles', [RoleController::class, 'showCreateRoleForm']);
+Route::post('/create-roles', [RoleController::class, 'storeRole']);
+
+Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
+Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
+
+Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
