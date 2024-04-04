@@ -49,4 +49,26 @@ class RoleController extends Controller
             dd($error);
         }
     }
+
+    public function showEditRoleForm(Request $request)
+    {
+        $role = Role::find($request->role_id);
+        return view('Admin.Role.edit-role', ['role' => $role]);
+    }
+
+    public function updateForm(Request $request)
+    {
+        try {
+            $role = Role::find($request->role_id);
+            $role->role_name = $request->role_name;
+            $role->role_desc = $request->role_desc;
+            $role->update();
+
+            Session::flash('success-to-update-role', 'Role ' . $role->role_name . ' Berhasil Di Update');
+            return redirect(url('/roles/' . $role->role_id . '/details'));
+        } catch (ValidationException $error) {
+            Session::flash('fail-to-update-role', 'Role ' . $role->role_name . ' Tidak Berhasil Di Update');
+            return back();
+        }
+    }
 }
