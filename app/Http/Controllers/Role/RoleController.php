@@ -11,19 +11,6 @@ use App\Models\Role;
 
 class RoleController extends Controller
 {
-
-    public function showDetailRole(Request $request)
-    {
-        $role = Role::find($request->role_id);
-        return view('Admin.Role.role-details', ['role' => $role]);
-    }
-
-    public function showRole()
-    {
-        $roles = Role::all()->sortByDesc('created_at',);
-        return view('Admin.Role.roles', ['roles' => $roles]);
-    }
-
     public function showCreateRoleForm()
     {
         return view('Admin.Role.create-role');
@@ -49,35 +36,5 @@ class RoleController extends Controller
         } catch (ValidationException $error) {
             dd($error);
         }
-    }
-
-    public function showEditRoleForm(Request $request)
-    {
-        $role = Role::find($request->role_id);
-        return view('Admin.Role.edit-role', ['role' => $role]);
-    }
-
-    public function updateForm(Request $request)
-    {
-        try {
-            $role = Role::find($request->role_id);
-            $role->role_name = $request->role_name;
-            $role->role_desc = $request->role_desc;
-            $role->update();
-
-            Session::flash('success-to-update-role', 'Role ' . $role->role_name . ' Berhasil Di Update');
-            return redirect(url('/roles/' . $role->role_id . '/details'));
-        } catch (ValidationException $error) {
-            Session::flash('fail-to-update-role', 'Role ' . $role->role_name . ' Tidak Berhasil Di Update');
-            return back();
-        }
-    }
-
-    public function destoryRoleData(Request $request)
-    {
-        $role = Role::find($request->role_id);
-        $role->delete();
-        Session::flash('success-to-delete-role', 'Role ' . $role->role_name . ' Berhasil Dihapus');
-        return redirect(url('/roles'));
     }
 }
