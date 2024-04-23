@@ -52,4 +52,5 @@ Route::get('/health-institution', [InstitutionController::class, 'showInstitutio
 Route::get('/health-institution/{institution_id}/edit', [InstitutionController::class, 'showEditInstitutionForm']);
 Route::patch('/health-institution/{institution_id}/update', [InstitutionController::class, 'updateInstitutionData']);
 
+Route::delete('/health-institution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
