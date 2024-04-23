@@ -35,3 +35,21 @@ Route::get('/health-institution/status', [InstitutionController::class, 'showVer
 Route::post('/health-institution', [InstitutionController::class, 'store']);
 
 
+// * Restricted Access
+
+Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
+
+Route::get('/health-institution/{institution_id}/details', [InstitutionController::class, 'showInstitutionDetail']);
+
+Route::patch('/verification-request/update-status/{institution_id}', [InstitutionController::class, 'updateStatus']);
+
+Route::patch('/verification-request/reject/{institution_id}', [InstitutionController::class, 'rejectStatus']);
+
+Route::get('/health-institution/{institution_id}/more-details', [InstitutionController::class, 'InstitutionMoreDetail']);
+
+Route::get('/health-institution', [InstitutionController::class, 'showInstitutions']);
+
+Route::get('/health-institution/{institution_id}/edit', [InstitutionController::class, 'showEditInstitutionForm']);
+Route::patch('/health-institution/{institution_id}/update', [InstitutionController::class, 'updateInstitutionData']);
+
+
