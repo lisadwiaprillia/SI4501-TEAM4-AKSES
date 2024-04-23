@@ -151,7 +151,7 @@
                                     <div class="detail-box">
                                         <div class="heading_container">
                                             <h2>
-                                                About <span>AKSES</span>
+                                                Tentang <span>AKSES</span>
                                             </h2>
                                         </div>
                                         <p>
@@ -174,4 +174,51 @@
         </div>
     </section>
     <!-- end about section -->
+
+    <!-- rekom obat section -->
+    <section class="book_section layout_padding">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <section class="rekomobat_section">
+                        <div class="card" style="background-color: rgb(1, 159, 144); padding: 80px;">
+                            <div class="row">
+                                <div class="col-md-6 ">
+                                <div class="detail-box">
+                                        <div class="heading_container">
+                                            <h2 style="color: white;">
+                                                Cari rekomendasi obat
+                                                sesuai keluhan kamu !
+                                            </h2>
+                                        </div>
+                                        <br>
+                                        <p style="color: white;">
+                                            Lorem ipsum dolor sit amet consectetur adipiscing elit 
+                                            Proin venenatis pellentesque vitae porta consectetur 
+                                            nunc.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-center">
+                                    <div class="card" style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;" onmouseover="this.style.backgroundColor='white'" onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
+                                        <div class="card-body">
+                                            <a href="" style="color: white; font-weight: bold;" onmouseover="this.style.color='rgb(1, 159, 144)'" onmouseout="this.style.color='rgb(255, 255, 255)'">Cari Obat</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 d-flex align-items-center justify-content-center">
+                                    <div class="card" style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;" onmouseover="this.style.backgroundColor='white'" onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
+                                        <div class="card-body">
+                                            <a href="" style="color: white; font-weight: bold;" onmouseover="this.style.color='rgb(1, 159, 144)'" onmouseout="this.style.color='rgb(255, 255, 255)'">Baca edukasi lainnya</a>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection
