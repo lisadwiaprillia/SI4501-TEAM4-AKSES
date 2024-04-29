@@ -54,3 +54,4 @@ Route::patch('/health-institution/{institution_id}/update', [InstitutionControll
 
 Route::delete('/health-institution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
+
