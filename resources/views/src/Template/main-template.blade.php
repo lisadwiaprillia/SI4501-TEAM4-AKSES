@@ -39,12 +39,15 @@
 </head>
 
 <body>
+
     @include('src.Partials.header')
 
     @yield('content')
 
     @include('src.Partials.footer')
 
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <!-- jQery -->
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}"></script>

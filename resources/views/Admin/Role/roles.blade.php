@@ -53,18 +53,6 @@
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-
-                                                    <a href="" class="btn btn-primary back-btn mr-2">Detail</a>
-                                                    <form class="d-inline" action="" method="POST">
-                                                        @csrf
-                                                        @method('PATCH')
-                                                        <button class="btn btn-success mr-2" type="submit">Edit</button>
-                                                    </form>
-
-                                                    <form class="d-inline" action="" method="POST">
-                                                        @csrf
-                                                        @method('PATCH')
-
                                                         <button class="btn btn-danger mr-2" type="submit">Hapus</button>
                                                     </form>
                                                 </td>
