@@ -4,12 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
+use App\Http\Controllers\MedicalStaff\AuthController;
 
 // Login
 
-Route::get('/login', [AuthController::class, 'showLoginForm']);
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('user.loginPage');
 Route::post('/login', [AuthController::class, 'login']);
-Route::get('/', [CitizenController::class, 'index']);
+Route::get('/', [CitizenController::class, 'index'])->name('index');
 
 //* Roles
 

@@ -48,13 +48,13 @@
                                 Institusi Kesehatan
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item @yield('institution')" href={{url('/roles')}}">Pengajuan Verifikasi Institusi Kesehatan</a>
+                                <a class="dropdown-item @yield('institution')" href="{{url('/roles')}}">Pengajuan Verifikasi Institusi Kesehatan</a>
                                 <a class="dropdown-item @yield('check')" href="{{url('/health-institution/check-status')}}">Cek Status Verifikasi Institusi Kesehatan</a>
                             </div>
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="">
+                        <a href="login">
                             <span>
                                 Login
                             </span>
