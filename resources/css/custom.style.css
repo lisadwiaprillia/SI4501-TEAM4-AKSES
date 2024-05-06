@@ -1,0 +1,30 @@
+.disabled-button {
+  color: white;
+  cursor: not-allowed;
+  pointer-events: none;
+  text-decoration: none;
+  opacity: 0.8;
+}
+
+
+/* Config For Modal Input */
+.no-background {
+  background-color: transparent !important;
+}
+
+.no-border {
+  border: none !important; 
+  box-shadow: none !important; 
+  outline: none !important; 
+}
+
+/* Custom submit button */
+.submit-button {
+  background-color: #019F90;
+  border-color: #019F90;
+}
+
+.display-none {
+  display: none;
+}
+
