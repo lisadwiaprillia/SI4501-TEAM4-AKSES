@@ -35,28 +35,48 @@
                     <div class="d-flex mr-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav ">
                             <li class="nav-item active">
-                                <a class="nav-link @yield('home')" href="/">Beranda</a>
+                                <a class="nav-link @yield('home')" href="{{ url('home') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @yield('education')" href="">Halaman Edukasi</a>
+                                <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>
                             </li>
                         </ul>
-                        <div class="dropdown show">
-                            <a class="btn btn-secondary dropdown-toggle shadow-none" href="#" role="button"
+                        <div class="dropdown show nav-link mr-5">
+                            <a class="dropdown-toggle shadow-none nav-link" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="background-color:#019F90; border: none;">
-                                Institusi Kesehatan
+                                style="color: black">
+                                Data Institusi
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li><a class="dropdown-item @yield('drug-classes')" href=>Data Kelas Obat</a></li>
+                                <li><a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item @yield('roles')" href="{{ url('/roles') }}">Data Role</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="dropdown show">
+                            <a class="dropdown-toggle shadow-none" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                                Data Obat
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item @yield('institution')" href={{url('/roles')}}">Pengajuan Verifikasi Institusi Kesehatan</a>
-                                <a class="dropdown-item @yield('check')" href="{{url('/health-institution/check-status')}}">Cek Status Verifikasi Institusi Kesehatan</a>
+                                <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/drug/presentations') }}">Data
+                                    Kemasan Obat</a>
+                                <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data Kelas
+                                    Obat</a>
+                                <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
                             </div>
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="{{url('/home')}}">
+                        <a href="#">
                             <span>
-                                Login
+                                Logout
                             </span>
                         </a>
                     </div>
