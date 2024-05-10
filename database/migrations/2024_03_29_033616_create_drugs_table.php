@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('drugs', function (Blueprint $table) {
             $table->id('drug_id');
+            $table->string('drug_name', 100);
             $table->text('contents');
             $table->text('indications');
             $table->text('dosage');
@@ -21,8 +22,13 @@ return new class extends Migration
             $table->text('drug_interaction');
             $table->text('adverse_reactions');
             $table->text('atc_classification');
+
+            $table->unsignedBigInteger('presentation_id');
+            $table->foreign('presentation_id')->references('presentation_id')->on('drug_presentations')->onDelete('cascade');
+
             $table->unsignedBigInteger('class_id');
             $table->foreign('class_id')->references('class_id')->on('drug_classes')->onDelete('cascade');
+
             $table->unsignedBigInteger('regulatory_id');
             $table->foreign('regulatory_id')->references('regulatory_id')->on('drug_regulatories');
             $table->timestamps();

@@ -5,6 +5,7 @@ use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
+use App\Http\Controllers\Drugs\PresentationController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -39,7 +40,7 @@ Route::post('/health-institution', [InstitutionController::class, 'store']);
 // * Restricted Access
 
 
-Route::get('/home', function() {
+Route::get('/home', function () {
   return view('Admin.home');
 });
 
@@ -73,3 +74,18 @@ Route::get('/drugs/class/{class_id}/edit-form', [ClassController::class, 'showEd
 Route::patch('/drugs/class/{class_id}/update-form', [ClassController::class, 'updateDrugClass']);
 
 Route::delete('/drugs/classes/{class_id}/delete', [ClassController::class, 'destroyDrugClass']);
+
+// * Drug Presentation 
+
+Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation']);
+
+Route::get('/drug/presentations/{presentation_id}', [PresentationController::class, 'show_detail_presentation']);
+
+Route::get('/drugs/create-drug=presentation', [PresentationController::class, 'show_create_presentation_form']);
+
+Route::post('/drugs/create-drug=presentation', [PresentationController::class, 'store_drug_presentation_data']);
+
+Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController::class, 'show_edit_presentation_form']);
+Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
+
+Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
