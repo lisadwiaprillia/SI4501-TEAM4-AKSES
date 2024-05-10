@@ -1,13 +1,7 @@
 <!-- Import Template -->
-@extends('src.Template.main-template')
-
-<!-- Set Title Halaman -->
-@section('title', 'Akses')
-
-<!-- Set class active -->
+@extends('src.Admin.Template.main-template')
 @section('roles', 'active')
-
-<!-- Import Layouting -->
+@section('title', 'Roles')
 @section('content')
     <main>
         <main>

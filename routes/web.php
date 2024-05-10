@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
+use App\Http\Controllers\Drugs\ClassController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -37,6 +38,11 @@ Route::post('/health-institution', [InstitutionController::class, 'store']);
 
 // * Restricted Access
 
+
+Route::get('/home', function() {
+  return view('Admin.home');
+});
+
 Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
 
 Route::get('/health-institution/{institution_id}/details', [InstitutionController::class, 'showInstitutionDetail']);
@@ -54,3 +60,16 @@ Route::patch('/health-institution/{institution_id}/update', [InstitutionControll
 
 Route::delete('/health-institution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
+
+// * Drug Class
+Route::get('/drugs/classes', [ClassController::class, 'showDrugClasses']);
+
+Route::get('/drug/class/{class_id}', [ClassController::class, 'showDetailDrugClass']);
+
+Route::get('/drugs/class/create-form', [ClassController::class, 'showCreateClassForm']);
+Route::post('/drugs/class/store', [ClassController::class, 'storeDrugClassData']);
+
+Route::get('/drugs/class/{class_id}/edit-form', [ClassController::class, 'showEditClassForm']);
+Route::patch('/drugs/class/{class_id}/update-form', [ClassController::class, 'updateDrugClass']);
+
+Route::delete('/drugs/classes/{class_id}/delete', [ClassController::class, 'destroyDrugClass']);
