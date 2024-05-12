@@ -48,13 +48,21 @@
                                 Institusi Kesehatan
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <a class="dropdown-item @yield('institution')" href={{url('/roles')}}">Pengajuan Verifikasi Institusi Kesehatan</a>
-                                <a class="dropdown-item @yield('check')" href="{{url('/health-institution/check-status')}}">Cek Status Verifikasi Institusi Kesehatan</a>
+                                <a class="dropdown-item @yield('institution')" href="{{ route('institution') }}">Pengajuan
+                                    Verifikasi Institusi Kesehatan</a>
+                                <a class="dropdown-item @yield('check')"
+                                    href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi Institusi
+                                    Kesehatan</a>
+                                <a class="dropdown-item @yield('employee-request')"
+                                    href="{{ url('employee-request') }}">Pengajuan Verifikasi Tenaga Kesehatan</a>
+                                <a class="dropdown-item @yield('employee-check')"
+                                    href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi Tenaga
+                                    kesehatan</a>
                             </div>
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="{{url('/home')}}">
+                        <a href="">
                             <span>
                                 Login
                             </span>
