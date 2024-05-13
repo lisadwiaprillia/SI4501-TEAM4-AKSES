@@ -13,7 +13,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th scope="row">No</th>
+                        <th scope="row">No.</th>
                         <th scope="row">Nama Pegawai</th>
                         <th scope="row">Nomor Telepon Pegawai</th>
                         <th scope="row">Alamat Pegawai</th>
