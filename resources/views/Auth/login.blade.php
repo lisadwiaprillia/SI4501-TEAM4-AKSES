@@ -66,7 +66,9 @@
 
                         <h2 class="text-center mb-5">Login</h2>
 
-                        <form action="{{ route('user.loginPage') }}" method="POST">
+                        <!-- Main Fiture -->
+
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="username">Email</label>

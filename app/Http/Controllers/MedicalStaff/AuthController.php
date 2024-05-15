@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\MedicalStaff;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -17,8 +18,11 @@ class AuthController extends Controller
     }
 
     public function login(Request $request)
-    {
-        {
+     {
+
+        // WITH BCRYPT PASS
+
+         {
             $UserEmailInput = $request->input('user_email');
     
             $user = DB::table('users')->select('user_id', 'name', 'user_email', 'user_password', 'role_id')->where('user_email', $UserEmailInput)->get();
@@ -45,5 +49,6 @@ class AuthController extends Controller
     
             return redirect(route('admin.dashboard'))->with('loginSuccess', 'Proses Login berhasil');
         }
-    }
-}
+     }
+}    
+
