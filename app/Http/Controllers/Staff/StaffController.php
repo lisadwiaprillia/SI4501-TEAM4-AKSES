@@ -1,0 +1,145 @@
+<?php
+
+namespace App\Http\Controllers\Staff;
+
+use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+
+use App\Models\Institution;
+use App\Models\User;
+use Illuminate\Validation\ValidationException;
+class StaffController extends Controller
+{
+    public function showRequestForm()
+    {
+        return view('Institution.request-staff');
+    }
+
+    public function storeTicket(Request $request)
+    {
+        $institution = Institution::where('institution_ticket_code',  $request->institution_ticket_code)->first();
+
+        if ($institution == null) {
+            Session::flash('failed-to-found-ticket', 'Data Tiket Institusi Tidak Valid');
+            return back();
+        }
+
+        if ($institution->institution_status == 'Pending' || $institution->institution_status == 'Ditolak') {
+            Session::flash('institution-not-valid', 'Maaf, Tiket Institusi Yang DImiliki Tidak Valid');
+            return back();
+        }
+
+        Session::put('validToken', true);
+
+        return redirect(url('/register'))->with([
+            'institution_id' => $institution->institution_id
+        ]);
+    }
+
+    public function showStaffRequest()
+    {
+        $users = User::with('institution')->where('user_status', 'pending')->get();
+        return view('Admin.Staff.staff-request', compact('users'));
+    }
+
+    public function store1(Request $request)
+    {
+        try {
+            $staffData = $request->validate([
+                'user_email' => 'required|unique:users',
+                'name' => 'required|unique:users',
+                'user_phone' => 'required|unique:users',
+                'user_address' => 'required',
+                'user_password' => 'required|min:6',
+                'user_status' => 'nullable',
+                'user_evidence' => 'required|mimes:jpg,png|max:2048',
+                'role_id' => 'nullable',
+                'institution_id' => 'required'
+            ]);
+
+            $imagePath = $request->file('user_evidence')->store('user-evidence', 'public');
+
+            $staff = new User;
+            $staff->name = $staffData['name'];
+            $staff->user_email = $staffData['user_email'];
+            $staff->user_phone = $staffData['user_phone'];
+            $staff->user_address = $staffData['user_address'];
+            $staff->user_evidence = $imagePath;
+            $staff->user_status = 'pending';
+            $staff->user_password = bcrypt($staffData['user_password'], ['rounds' => 12]);
+            $staff->role_id = 2;
+            $staff->save();
+
+            Session::flash('success-to-register', 'Berhasil Melakukan Proses Registrasi');
+
+            $resultData = [
+                'name' => $staffData['name'],
+                'user_email' => $staffData['user_email'],
+                'user_phone' => $staffData['user_phone'],
+                'user_address' => $staffData['user_address']
+            ];
+
+        } catch (ValidationException $error) {
+            dd($error);
+        }
+    }
+    public function showStaff()
+    {
+        return view ('Admin.Staff.getStaff');
+    }
+    
+    public function showStaffDetail(Request $request)
+    {
+        try {
+            $staff = User::find($request->user_id);
+            return view('Admin.Staff.detail-staff', ['staff' => $staff] 
+            );
+        } catch (ValidationException $error) {
+            dd($error);
+        }
+
+    }
+
+    public function showEditStaffForm(Request $request)
+    {
+        $staff = User::find($request->user_id)->first();
+        return view('Admin.staff.edit-staff', ['staff' => $staff]);
+    }
+
+    public function updateStaffData(Request $request)
+    {
+
+        $staff = User::find($request->user_id);
+
+        $staff->name = $request->name;
+        $staff->user_email = $request->user_email;
+        $staff->user_phone = $request->user_phone;
+        $staff->user_address = $request->user_address;
+
+        if (!$request->user_evidence == null) {
+            $imagePath = $request->file('user_evidence')->store('verification-evidence', 'public');
+            $staff->user_evidence = $imagePath;
+        } else {
+            $staff->user_evidence = $staff->user_evidence;
+        }
+        $staff->update();
+
+        Session::flash('success-to-update-staff', 'Data Staff Pegawai ' . $staff->name . ' Berhasil Di Perbaharui');
+
+        return redirect(url('/health-staff'));
+    }
+
+    public function burnStaff(Request $request)
+    {
+        try {
+            $staff = User::find($request->user_id)->first();
+            $staff->delete();
+            Session::flash('success-to-delete-staff', 'Data Pegawai ' . $staff->name . ' Berhasil Dihapus');
+            return back();
+        } catch (ValidationException $error) {
+            dd($error);
+        }
+    }
+
+}
