@@ -8,6 +8,7 @@ use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Categories\CategoriesController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -53,8 +54,6 @@ Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateS
 
 Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
 // * Restricted Access
-
-
 Route::get('/home', function () {
   return view('Admin.home');
 });
@@ -104,3 +103,14 @@ Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController
 Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
 Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+
+// * Categories of Post
+
+Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
+Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
+
+Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
+
+Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
+Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
+// Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
