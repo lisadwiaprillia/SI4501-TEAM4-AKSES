@@ -12,6 +12,8 @@ use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
+use App\Http\Controllers\Categories\CategoriesController;
+
 
 //use App\Http\Controllers\MedicalStaff\AuthController;
 
@@ -68,6 +70,17 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/health-staff', [StaffController::class, 'showStaff']); #NEXT FEATURE
     Route::post('/health-staff', [StaffController::class, 'store1']); #NEXT FEATURE
 
+    // * Categories of Post
+
+    Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
+    Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
+    
+    Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
+    
+    Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
+    Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
+    // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+
 });
 
 
@@ -102,3 +115,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
 
 });
+
+//quesionable mark
+Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController::class, 'show_edit_presentation_form']);
+Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
+
+Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+
