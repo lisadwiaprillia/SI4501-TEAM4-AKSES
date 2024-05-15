@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id('presentation_id');
             $table->string('form', 50);
             $table->text('packaging_and_price');
-            $table->unsignedBigInteger('drug_id');
-            $table->foreign('drug_id')->references('drug_id')->on('drugs')->onDelete('cascade');
             $table->timestamps();
         });
     }

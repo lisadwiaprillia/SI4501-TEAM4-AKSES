@@ -1,7 +1,6 @@
-<!-- Import Template -->
 @extends('src.Admin.Template.main-template')
-@section('roles', 'active')
-@section('title', 'Roles')
+@section('drug-presentation', 'active')
+@section('title', 'Presentasi Obat')
 @section('content')
     <main>
         <main>
@@ -9,41 +8,53 @@
                 <main>
                     <div class="container">
 
-                        @if (Session::has('success-to-delete-role'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ Session::get('success-to-delete-role') }}
+                        @if (Session::has('success-to-delete-drug-presentation'))
+                            <div class="alert alert-danger alert-dismissible fade show text-capitalize" role="alert">
+                                {{ Session::get('success-to-delete-drug-presentation') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         @endif
-                        <p class="mt-5 ml-3 fw-bold fs-3">Manajemen Role</p>
-                        <a href="{{ url('/create-roles') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat Role</a>
+                        @if (Session::has('success-to-update-drug-presentation'))
+                            <div class="alert alert-success alert-dismissible fade show text-capitalize" role="alert">
+                                {{ Session::get('success-to-update-drug-presentation') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+
+                        <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Presentasi obat</p>
+                        <a href="{{ url('/drugs/create-drug=presentation') }}"
+                            class="btn btn-primary ml-3 medicine-add-btn">Buat
+                            Presentasi Obat</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th scope="row">No</th>
-                                            <th scope="row">Nama Role</th>
+                                            <th scope="row">Form </th>
+                                            <th scope="row">Kemasan dan Harga</th>
                                             <th scope="row">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($roles as $role)
+                                        @foreach ($drugs_presentations as $drug_presentation)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $role->role_name }}</td>
+                                                <td>{{ $drug_presentation->form }}</td>
+                                                <td>{{ $drug_presentation->packaging_and_price }}</td>
                                                 <td>
-
-                                                    <a href="{{ url('/roles/' . $role->role_id . '/details') }}"
+                                                    <a href="{{ url('/drug/presentations/' . $drug_presentation->presentation_id) }}"
                                                         class="btn btn-primary back-btn mr-2">Detail</a>
 
-                                                    <a href="{{ url('/update-roles/' . $role->role_id . '/edit') }}"
+                                                    <a href="{{ url('/drugs/' . $drug_presentation->presentation_id . '/edit-presentation') }}"
                                                         class="btn btn-success mr-2">Edit</a>
 
                                                     <form class="d-inline"
-                                                        action="{{ url('/delete-role/' . $role->role_id . '/delete') }}"
+                                                        action="{{ url('/drugs/' . $drug_presentation->presentation_id . '/delete') }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
@@ -60,4 +71,5 @@
                 </main>
             </div>
         </main>
+
     @endsection
