@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Facades\DB;
@@ -21,6 +22,14 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         {
+            if ('user_email' == 'admin@email.com' && 'user_password' == 'admin') {
+                // Autentikasi admin secara manual
+                Auth::loginUsingId(2);
+    
+                // Redirect ke area admin setelah login berhasil
+                return redirect()->route('admin.dashboard');
+            }
+
             $UserEmailInput = $request->input('user_email');
     
             $user = DB::table('users')->select('user_id', 'name', 'user_email', 'user_password', 'role_id')->where('user_email', $UserEmailInput)->get();
@@ -45,7 +54,7 @@ class AuthController extends Controller
                 $request->session()->put('role_id', true);
             }
     
-            return redirect(route('admin.dashboard'))->with('loginSuccess', 'Proses Login berhasil');
+            return redirect(route('admin.home'))->with('loginSuccess', 'Proses Login berhasil');
         }
     }
 
