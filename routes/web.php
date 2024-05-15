@@ -74,6 +74,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 // * Restricted Access admin
 
 Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
+    route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
+
 
     Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
 

@@ -22,12 +22,10 @@ class AuthController extends Controller
     public function login(Request $request)
     {
         {
-            if ('user_email' == 'admin@email.com' && 'user_password' == 'admin') {
-                // Autentikasi admin secara manual
-                Auth::loginUsingId(2);
-    
-                // Redirect ke area admin setelah login berhasil
-                return redirect()->route('admin.dashboard');
+            if ($request->input('user_email') === 'admin@email.com' && $request->input('user_password') === 'admin') {
+                Auth::loginUsingId(1); // Anggap saja admin memiliki ID 1
+                $request->session()->put('isAdmin', true);
+                return redirect()->route('admin.home')->with('loginSuccess', 'Proses Login berhasil');
             }
 
             $UserEmailInput = $request->input('user_email');

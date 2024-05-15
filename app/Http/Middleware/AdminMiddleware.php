@@ -17,16 +17,11 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        // Cek apakah pengguna yang mencoba mengakses adalah admin
-        if ($request->email == 'admin@email.com' && $request->password == 'admin') {
-            // Autentikasi admin secara manual
-            Auth::loginUsingId(2); // Misalnya, anggap saja admin memiliki ID 1
-
-            // Lanjutkan ke permintaan berikutnya
+        if ($request->session()->get('isAdmin')) {
             return $next($request);
         }
-
-        // Jika bukan admin, arahkan ke halaman dashboard admin
-        return redirect(route('admin.home'));
+    
+        // Jika bukan admin, redirect ke halaman login atau halaman lainnya
+        return redirect(route('login'))->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
     }
 }
