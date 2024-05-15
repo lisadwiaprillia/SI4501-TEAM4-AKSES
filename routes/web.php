@@ -4,18 +4,19 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
-use App\Http\Controllers\MedicalStaff\AuthController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
-use Resources\Views\Auth;
-
-// Login
+use App\Http\Controllers\Staff\StaffController;
+use App\Http\Controllers\Auth\AuthController;
+//use App\Http\Controllers\MedicalStaff\AuthController;
 
 Route::get('/login', [AuthController::class, 'showLoginForm'])->name('user.loginPage');
 Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::get('/', [CitizenController::class, 'index'])->name('index');
 
 //* Roles
+Route::get('/register', [AuthController::class, 'showRegisterForm']);
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::get('/roles', [RoleController::class, 'showRole']);
 
@@ -42,7 +43,18 @@ Route::get('/health-institution/status', [InstitutionController::class, 'showVer
 
 Route::post('/health-institution', [InstitutionController::class, 'store']);
 
+Route::get('/employee-request', [StaffController::class, 'showRequestForm']);
 
+Route::post('/employee-request', [StaffController::class, 'storeTicket']);
+
+Route::get('/health-staff', [StaffController::class, 'showStaff']); #NEXT FEATURE
+Route::post('/health-staff', [StaffController::class, 'store1']); #NEXT FEATURE
+
+Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
+Route::get('/health-staff/{user_id}/edit', [StaffController::class, 'showEditStaffForm']);
+Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateStaffData']);
+
+Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
 // * Restricted Access
 
 Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);

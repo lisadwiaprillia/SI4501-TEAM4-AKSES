@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('user_phone')->unique();
             $table->text('user_address');
             $table->string('user_password');
+            $table->enum('user_status', ['diterima', 'pending', 'ditolak']);
+            $table->string('user_evidence');
             $table->timestamps();
             $table->unsignedBigInteger('role_id');
             $table->unsignedBigInteger('institution_id');
