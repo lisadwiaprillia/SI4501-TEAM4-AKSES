@@ -66,7 +66,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/drug/presentations') }}">Data
-                                    Kemasan Obat</a>
+                                    Sediaan Obat</a>
                                 <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data Kelas
                                     Obat</a>
                                 <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>

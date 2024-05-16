@@ -21,14 +21,14 @@
                     <table class="table table-striped">
                         <tbody>
                             <tr>
-                                <th scope="row">Nama Presentasi Obat</th>
+                                <th scope="row">Sediaan Obat</th>
                                 <td>:</td>
                                 <td>
                                     {{ $drugs_presentation->form }}
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Kemasan Dan Harga</th>
+                                <th scope="row">Sediaan Dan Harga</th>
                                 <td>:</td>
                                 <td>
                                     {{ $drugs_presentation->packaging_and_price }}

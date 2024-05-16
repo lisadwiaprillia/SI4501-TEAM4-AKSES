@@ -16,17 +16,17 @@
             @endif
             <div class="card">
                 <div class="card-header text-capitalize">
-                    formulir Pembuatan Presentasi Obat
+                    formulir Pembuatan Sediaan Obat
                 </div>
                 <form action="{{ url('/drugs/create-drug=presentation') }}" method="POST" class="px-5 py-5">
                     @csrf
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Nama Presentasi / Form</label>
+                        <label for="exampleInputEmail1">Nama Sediaan / Form</label>
                         <input type="text" placeholder="Contoh: Sanmol oral drops 60 mg/0.6 mL" class="form-control"
                             id="exampleInputEmail1" aria-describedby="emailHelp" name="form" required>
                     </div>
                     <div class="form-group">
-                        <label for="exampleInputEmail1">Packing / Price</label>
+                        <label for="exampleInputEmail1">Sediaan / Harga</label>
                         <input class="form-control" placeholder="Contoh: 15 mL x 1's (Rp17,000/boks)"
                             name="packaging_and_price" id="exampleFormControlTextarea1" required>
                     </div>
