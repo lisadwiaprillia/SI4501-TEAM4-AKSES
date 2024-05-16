@@ -74,7 +74,7 @@
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="#">
+                        <a href="{{ url('/logout') }}">
                             <span>
                                 Logout
                             </span>
