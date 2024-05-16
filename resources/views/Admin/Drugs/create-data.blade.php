@@ -1,0 +1,43 @@
+@extends('src.Admin.Template.main-template')
+@section('drug-data', 'active')
+@section('title', 'Data Obat')
+@section('content')
+
+
+    <main>
+        <div class="container mt-5">
+            @if (Session::has('success-to-create-data'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ Session::get('success-to-create-data') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
+            <div class="card">
+                <div class="card-header text-capitalize">
+                    formulir Pembuatan Data Obat
+                </div>
+                <form action="{{ url('/drugs/create-drug=data') }}" method="POST" class="px-5 py-5">
+                    @csrf
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">ID Obat</label>
+                        <input type="text" placeholder="" class="form-control"
+                            id="exampleInputEmail1" aria-describedby="emailHelp" name="form" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Konten </label>
+                        <input class="form-control" placeholder=""
+                            name="packaging_and_price" id="exampleFormControlTextarea1" required>
+                    </div>
+                    <a href="{{ url('/drug/data') }}" class="btn btn-primary mt-3 mr-3 back-btn">Lihat
+                        Data Obat</a>
+                    <button type="submit" name="submit" class="btn btn-primary submit-button mt-3">Buat Data
+                        Obat</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+
+@endsection
