@@ -6,6 +6,7 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
+use App\Http\Controllers\Drugs\DataController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -89,3 +90,18 @@ Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController
 Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
 Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+
+// * Drug Data Obat 
+
+Route::get('/drug/data', [DataController::class,  'show_drug_data']);
+
+Route::get('/drug/data/{data_id}', [DataController::class, 'show_detail_data']);
+
+Route::get('/drugs/create-drug=data', [DataController::class, 'show_create_data_form']);
+
+Route::post('/drugs/create-drug=data', [DataController::class, 'store_drug_data_data']);
+
+Route::get('/drugs/{data_id}/edit-data', [DataController::class, 'show_edit_data_form']);
+Route::put('/drugs/{data_id}/update-data', [DataController::class, 'update_drug_data_data']);
+
+Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
