@@ -57,9 +57,9 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="login-container">
-                        @if (session()->has('registerProcessMessage'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('registerProcessMessage') }}
+                        @if (session()->has('login'))
+                            <div class="alert alert-danger text-capitalize alert-dismissible fade show" role="alert">
+                                {{ session('login') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif

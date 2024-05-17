@@ -19,7 +19,7 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
 
     Route::get('/register', [AuthController::class, 'showRegisterForm']); //guest
 
-    Route::post('/register', [StaffController::class, 'store1']); //guest
+    Route::post('/register', [AuthController::class, 'register']); //guest
 
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('user.loginPage');
 
