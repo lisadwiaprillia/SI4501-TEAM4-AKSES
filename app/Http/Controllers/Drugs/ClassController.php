@@ -26,7 +26,7 @@ class ClassController extends Controller
     }
 
     public function storeDrugClassData(Request $request)
-    {   
+    {
         try {
 
             $drugs_class_validation_data = $request->validate([
@@ -42,34 +42,32 @@ class ClassController extends Controller
             Session::flash('success-to-create-class', 'Data kelas ' . $drugs_class_validation_data['class_name'] . ' Berhasil Dibuat');
 
             return redirect(url('/drugs/class/create-form'));
-
         } catch (ValidationException $error) {
-            dd($error);
+            Session::flash('error', $error->getMessage());
+            return back();
         }
     }
 
     public function showDetailDrugClass(Request $request)
     {
-        try {
-            $drug_class = DrugClass::find($request->class_id);
-            return view('Admin.Drugs.class-detail', [
-                'drug_class' => $drug_class
-            ]);
-        } catch (Exception $error) {
-            dd($error);
+        $drug_class = DrugClass::find($request->class_id);
+
+        if (!$drug_class) {
+            Session::flash('error', 'Maaf, data tidak ditemukan');
+            return back();
         }
+
+        return view('Admin.Drugs.class-detail', [
+            'drug_class' => $drug_class
+        ]);
     }
 
     public function showEditClassForm(Request $request)
     {
-        try {
-            $drug_class = DrugClass::find($request->class_id);
-            return view('Admin.Drugs.edit-class', [
-                'drug_class' => $drug_class
-            ]);
-        } catch (Exception $error) {
-            dd($error);
-        }
+        $drug_class = DrugClass::find($request->class_id);
+        return view('Admin.Drugs.edit-class', [
+            'drug_class' => $drug_class
+        ]);
     }
 
     public function updateDrugClass(Request $request)
@@ -91,16 +89,18 @@ class ClassController extends Controller
 
     public function destroyDrugClass(Request $request)
     {
-        try {
-            $drug_class = DrugClass::find($request->class_id);
-            $drug_class->delete();
-    
-            Session::flash('success-to-delete-drug-class', 'Data Kelas Obat ' . $drug_class->class_name . ' berhasil dihapus');
-    
-            return redirect(url('/drugs/classes'));
-        } catch (\Exception $error) {
-            Session::flash('fail-to-delete-drug-class', 'Kelas Obat ' . $drug_class->class_name . ' Tidak Berhasil Di Hapus');
+
+        $drug_class = DrugClass::find($request->class_id);
+
+        if (!$drug_class) {
+            Session::flash('error', 'Maaf, data tidak ditemukan dan tidak dapat dihapus');
             return back();
         }
+
+        $drug_class->delete();
+
+        Session::flash('success-to-delete-drug-class', 'Data Kelas Obat ' . $drug_class->class_name . ' berhasil dihapus');
+
+        return redirect(url('/drugs/classes'));
     }
 }

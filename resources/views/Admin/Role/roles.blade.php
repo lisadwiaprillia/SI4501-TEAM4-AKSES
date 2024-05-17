@@ -17,8 +17,17 @@
                                 </button>
                             </div>
                         @endif
+                        @if (Session::has('error'))
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{ Session::get('error') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
                         <p class="mt-5 ml-3 fw-bold fs-3">Manajemen Role</p>
-                        <a href="{{ url('/create-roles') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat Role</a>
+                        <a href="{{ url('/create-roles-form') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
+                            Role</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped">
