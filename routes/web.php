@@ -27,6 +27,12 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 
 Route::get('/', [CitizenController::class, 'index'])->name('index');
 
+Route::get('/konsultasikan-sekarang', function () {return view('Citizen.Home.realtime-chatting');});
+
+Route::get('/cari-obat', function () {return view('Citizen.Home.cari-obat');});
+
+Route::get('/education-page', function () {return view('Citizen.Home.education-page');});
+
 Route::get('/health-institution/request', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
 
 Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);

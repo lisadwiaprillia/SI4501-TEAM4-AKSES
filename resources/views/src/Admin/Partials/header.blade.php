@@ -48,7 +48,7 @@
                                 Data Institusi
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item @yield('drug-classes')" href=>Data Kelas Obat</a></li>
+                            <li><a class="dropdown-item @yield('institution')" href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a></li>
                                 <li><a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
                                 </li>
                                 <li>
