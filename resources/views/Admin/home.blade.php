@@ -126,7 +126,6 @@
     <!-- end slider section -->
     </div>
 
-
     <!-- about section -->
     <section class="book_section layout_padding">
         <div class="container">

@@ -29,7 +29,15 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
 
     Route::get('/health-institution/request', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
 
+
+    Route::get('/konsultasikan-sekarang', function () {return view('Citizen.Home.realtime-chatting');});
+
+    Route::get('/cari-obat', function () {return view('Citizen.Home.cari-obat');});
+
+    Route::get('/education-page', function () {return view('Citizen.Home.education-page');});
+
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
+
 
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
@@ -63,7 +71,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
 
-    Route::get('/create-roles', [RoleController::class, 'showCreateRoleForm']);
+    Route::get('/create-roles-form', [RoleController::class, 'showCreateRoleForm']);
     Route::post('/create-roles', [RoleController::class, 'storeRole']);
 
     Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);

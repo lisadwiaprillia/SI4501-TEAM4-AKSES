@@ -126,7 +126,7 @@ class InstitutionController extends Controller
     public function destroyInstitution(Request $request)
     {
         try {
-            $institution = Institution::find($request->institution_id)->first();
+            $institution = Institution::find($request->institution_id);
             $institution->delete();
             Session::flash('success-to-delete-institution', 'Data Institutsi ' . $institution->institution_name . ' Berhasil Dihapus');
             return back();
@@ -137,7 +137,7 @@ class InstitutionController extends Controller
 
     public function showEditInstitutionForm(Request $request)
     {
-        $institution = Institution::find($request->institution_id)->first();
+        $institution = Institution::find($request->institution_id);
         return view('Admin.Institution.edit-institution', ['institution' => $institution]);
     }
 
@@ -169,7 +169,7 @@ class InstitutionController extends Controller
 
     public function InstitutionMoreDetail(Request $request)
     {
-        $institution = Institution::find($request->institution_id)->first();
+        $institution = Institution::find($request->institution_id);
 
         return view('Admin.Institution.institution-more-detail', [
             'institution' => $institution,
