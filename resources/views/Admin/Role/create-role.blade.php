@@ -20,11 +20,19 @@
                     </button>
                 </div>
             @endif
+            @if (Session::has('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ Session::get('error') }}
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            @endif
             <div class="card">
                 <div class="card-header text-capitalize">
                     formulir Pembuatan Role Baru
                 </div>
-                <form action="/create-roles" method="POST" class="px-5 py-5">
+                <form action="{{ url('/create-roles') }}" method="POST" class="px-5 py-5">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama role</label>

@@ -5,9 +5,8 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
-use App\Http\Controllers\Staff\DashboardController;
 
-class AuthMiddleware
+class GuestMiddleware
 {
     /**
      * Handle an incoming request.
@@ -16,11 +15,10 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->exists('user')) {
-            // dd($request->session());
+        if (!($request->session()->exists('user'))) {
             return $next($request);
         } else {
-            return redirect(url('/'));
+            return redirect(url('staff-dashboard'));
         }
     }
 }
