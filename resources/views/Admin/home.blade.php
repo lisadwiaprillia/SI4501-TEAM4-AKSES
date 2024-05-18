@@ -30,7 +30,7 @@
                                         when looking at its layout. The point of using Lorem Ipsum is that it has a
                                         more-or-less normal distribution of letters, as opposed to
                                     </p>
-                                    <a href="">
+                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}" target="_new">
                                         Hubungi Kami
                                     </a>
                                 </div>
@@ -177,7 +177,7 @@
                         <div class="card" style="background-color: rgb(1, 159, 144); padding: 80px;">
                             <div class="row">
                                 <div class="col-md-6 ">
-                                <div class="detail-box">
+                                    <div class="detail-box">
                                         <div class="heading_container">
                                             <h2 style="color: white;">
                                                 Cari rekomendasi obat
@@ -186,23 +186,33 @@
                                         </div>
                                         <br>
                                         <p style="color: white;">
-                                            Lorem ipsum dolor sit amet consectetur adipiscing elit 
-                                            Proin venenatis pellentesque vitae porta consectetur 
+                                            Lorem ipsum dolor sit amet consectetur adipiscing elit
+                                            Proin venenatis pellentesque vitae porta consectetur
                                             nunc.
                                         </p>
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-center">
-                                    <div class="card" style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;" onmouseover="this.style.backgroundColor='white'" onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
+                                    <div class="card"
+                                        style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;"
+                                        onmouseover="this.style.backgroundColor='white'"
+                                        onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
                                         <div class="card-body">
-                                            <a href="" style="color: white; font-weight: bold;" onmouseover="this.style.color='rgb(1, 159, 144)'" onmouseout="this.style.color='rgb(255, 255, 255)'">Cari Obat</a>
+                                            <a href="" style="color: white; font-weight: bold;"
+                                                onmouseover="this.style.color='rgb(1, 159, 144)'"
+                                                onmouseout="this.style.color='rgb(255, 255, 255)'">Cari Obat</a>
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-md-3 d-flex align-items-center justify-content-center">
-                                    <div class="card" style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;" onmouseover="this.style.backgroundColor='white'" onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
+                                    <div class="card"
+                                        style="background-color: rgb(1, 159, 144); border: 1px solid white; padding: 15px; text-decoration: none; border-radius: 5px;"
+                                        onmouseover="this.style.backgroundColor='white'"
+                                        onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
                                         <div class="card-body">
-                                            <a href="" style="color: white; font-weight: bold;" onmouseover="this.style.color='rgb(1, 159, 144)'" onmouseout="this.style.color='rgb(255, 255, 255)'">Baca edukasi lainnya</a>
+                                            <a href="" style="color: white; font-weight: bold;"
+                                                onmouseover="this.style.color='rgb(1, 159, 144)'"
+                                                onmouseout="this.style.color='rgb(255, 255, 255)'">Baca edukasi lainnya</a>
                                         </div>
                                     </div>
                                 </div>
