@@ -29,7 +29,15 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
 
     Route::get('/health-institution/request', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
 
+
+    Route::get('/konsultasikan-sekarang', function () {return view('Citizen.Home.realtime-chatting');});
+
+    Route::get('/cari-obat', function () {return view('Citizen.Home.cari-obat');});
+
+    Route::get('/education-page', function () {return view('Citizen.Home.education-page');});
+
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
+
 
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
