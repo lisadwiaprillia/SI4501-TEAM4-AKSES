@@ -35,7 +35,7 @@
                     <div class="d-flex mr-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav ">
                             <li class="nav-item active">
-                                <a class="nav-link @yield('home')" href="{{ url('home') }}">Beranda</a>
+                                <a class="nav-link @yield('home')" href="{{ url('/staff-dashboard') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>

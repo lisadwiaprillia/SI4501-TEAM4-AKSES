@@ -38,7 +38,6 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
 
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
 
-
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
 
