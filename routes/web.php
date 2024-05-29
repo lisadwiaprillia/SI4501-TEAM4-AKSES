@@ -6,6 +6,7 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
+use App\Http\Controllers\Drugs\RegulatoryController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -13,6 +14,7 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Categories\CategoriesController;
+
 
 
 //use App\Http\Controllers\MedicalStaff\AuthController;
@@ -80,6 +82,11 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
     Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
     // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+
+     //CRUD Drug Regulatory Classification
+    Route::get('/list/regulatories', [RegulatoryController::class, 'showRegulatoryForm'])->name('admin.drugs.showRegulatory');
+    Route::post('/add/regulatories', [RegulatoryController::class, 'storeRegulatoryData']);
+
 
 });
 

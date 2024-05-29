@@ -81,8 +81,9 @@ class CategoriesController extends Controller
             dd($err);
         }
     }
+    
     public function deleteCategory($id)
-{
+    {
     try {
         $category = Category::findOrFail($id);
         $category->delete();
