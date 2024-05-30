@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Session;
 use App\Models\Institution;
 use App\Models\User;
 use Illuminate\Validation\ValidationException;
+
 class StaffController extends Controller
 {
     public function showRequestForm()
@@ -43,62 +44,22 @@ class StaffController extends Controller
         return view('Admin.Staff.staff-request', compact('users'));
     }
 
-    public function store1(Request $request)
-    {
-        try {
-            $staffData = $request->validate([
-                'user_email' => 'required|unique:users',
-                'name' => 'required|unique:users',
-                'user_phone' => 'required|unique:users',
-                'user_address' => 'required',
-                'user_password' => 'required|min:6',
-                'user_status' => 'nullable',
-                'user_evidence' => 'required|mimes:jpg,png|max:2048',
-                'role_id' => 'nullable',
-                'institution_id' => 'required'
-            ]);
-
-            $imagePath = $request->file('user_evidence')->store('user-evidence', 'public');
-
-            $staff = new User;
-            $staff->name = $staffData['name'];
-            $staff->user_email = $staffData['user_email'];
-            $staff->user_phone = $staffData['user_phone'];
-            $staff->user_address = $staffData['user_address'];
-            $staff->user_evidence = $imagePath;
-            $staff->user_status = 'pending';
-            $staff->user_password = bcrypt($staffData['user_password'], ['rounds' => 12]);
-            $staff->role_id = 2;
-            $staff->save();
-
-            Session::flash('success-to-register', 'Berhasil Melakukan Proses Registrasi');
-
-            $resultData = [
-                'name' => $staffData['name'],
-                'user_email' => $staffData['user_email'],
-                'user_phone' => $staffData['user_phone'],
-                'user_address' => $staffData['user_address']
-            ];
-
-        } catch (ValidationException $error) {
-            dd($error);
-        }
-    }
     public function showStaff()
     {
-        return view ('Admin.Staff.getStaff');
+        return view('Admin.Staff.getStaff');
     }
-    
+
     public function showStaffDetail(Request $request)
     {
         try {
             $staff = User::find($request->user_id);
-            return view('Admin.Staff.detail-staff', ['staff' => $staff] 
+            return view(
+                'Admin.Staff.detail-staff',
+                ['staff' => $staff]
             );
         } catch (ValidationException $error) {
             dd($error);
         }
-
     }
 
     public function showEditStaffForm(Request $request)
@@ -141,5 +102,4 @@ class StaffController extends Controller
             dd($error);
         }
     }
-
 }

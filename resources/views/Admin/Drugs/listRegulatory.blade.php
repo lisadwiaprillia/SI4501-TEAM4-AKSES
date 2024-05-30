@@ -28,7 +28,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($regulatories as $index => $regulatory)
+                            @foreach($regulatory as $index => $regulatory)
                             <tr>
                                 <td>{{ $index + 1 }}</td>
                                 <td>{{ $regulatory->regulatory_name }}</td>

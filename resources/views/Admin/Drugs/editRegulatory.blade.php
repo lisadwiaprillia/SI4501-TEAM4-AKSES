@@ -12,7 +12,7 @@
                 </div>
 
                 <div class="card-body">
-                    <form action="{{ route('drugs.updateRegulatoryData', $regulatory->regulatory_id) }}" method="POST">
+                    <form action="{{ route('Admin.Drugs.updateRegulatoryData', $regulatory->regulatory_id) }}" method="POST">
                         @csrf
                         @method('PUT')
 
@@ -40,7 +40,7 @@
 
                         <div class="form-group mt-4">
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
-                            <a href="{{ route('drugs.listRegulatory') }}" class="btn btn-secondary">Batal</a>
+                            <a href="{{ route('Admin.Drugs.listRegulatory') }}" class="btn btn-secondary">Batal</a>
                             <button type="button" class="btn btn-danger" id="deleteCategory">Hapus</button>
                         </div>
                     </form>

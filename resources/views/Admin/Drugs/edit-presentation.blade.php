@@ -15,23 +15,23 @@
                 @endif
                 <div class="card">
                     <div class="card-header text-capitalize">
-                        formulir Perubahan Data Presentasi Obat
+                        formulir Perubahan Data Sediaan Obat
                     </div>
                     <form action="{{ url('/drugs/' . $drug_presentation->presentation_id . '/update-presentation') }}"
                         method="POST" class="px-5 py-5" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Nama Form Obat</label>
+                            <label for="exampleInputEmail1">Sediaan Obat</label>
                             <input type="text" value="{{ $drug_presentation->form }}" class="form-control"
                                 id="exampleInputEmail1" aria-describedby="emailHelp" name="form" required>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Kemasan dan Harga</label>
+                            <label for="exampleInputEmail1">Sediaan dan Harga</label>
                             <input type="text" value="{{ $drug_presentation->packaging_and_price }}" class="form-control"
                                 id="exampleInputEmail1" aria-describedby="emailHelp" name="packaging_and_price" required>
                         </div>
-                        <a type="button" class="btn mt-3 mr-2 back-btn" href="{{ url('/drugs/classes') }}">Kembali</a>
+                        <a type="button" class="btn mt-3 mr-2 back-btn" href="{{ url('/drug/presentations') }}">Kembali</a>
                         <button type="submit" name="submit" class="btn btn-primary submit-button mt-3">Edit</button>
                     </form>
                 </div>

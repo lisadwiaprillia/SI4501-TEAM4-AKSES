@@ -12,12 +12,12 @@
                 </div>
 
                 <div class="card-body">
-                    <form id="regulatoryForm" action="{{ route('categories.showCategoryForm') }}" method="POST">
+                    <form id="regulatoryForm" action="{{ route('Admin.Drugs.showRegulatory') }}" method="POST">
                         @csrf
 
                         <div class="form-group">
                             <label for="name" class="form-label">Nama Regulasi</label>
-                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                            <input type="text" name="regulatory_name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -28,7 +28,7 @@
 
                         <div class="form-group mt-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea name="description" id="description" class="form-control @error('description') is-invalid @enderror" rows="4" required>{{ old('description') }}</textarea>
+                            <textarea name="regulatory_desc" id="description" class="form-control @error('description') is-invalid @enderror" rows="4" required>{{ old('description') }}</textarea>
 
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
@@ -39,7 +39,7 @@
 
                         <div class="form-group mt-4">
                             <button type="submit" class="btn" style="background-color: #019F90; color: white;">Simpan</button>
-                            <a href="{{ route('categories.listCategories') }}" class="btn btn-secondary">Kembali ⬅️</a>
+                            <a href="{{ route('Admin.Drugs.listRegulatory') }}" class="btn btn-secondary">Kembali ⬅️</a>
                         </div>
                     </form>
                 </div>

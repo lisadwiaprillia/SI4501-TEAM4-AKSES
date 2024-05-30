@@ -49,7 +49,7 @@
                                     <th scope="row">Bukti Kepemilikan Institusi</th>
                                     <td>:</td>
                                     <td>
-                                        <img src="{{ $image_url }}" alt="Bukti Kepemilikan Institusi"
+                                        <img src="{{ asset('storage/' . $institution->institution_evidence) }}" alt="Bukti Kepemilikan Institusi"
                                             style="max-width: 200px;">
                                     </td>
                                 </tr>

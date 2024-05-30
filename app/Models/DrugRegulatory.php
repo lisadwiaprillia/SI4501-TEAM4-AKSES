@@ -9,8 +9,9 @@ class DrugRegulatory extends Model
 {
     use HasFactory;
     
-    protected $primaryKey = 'regulatory_id';
     protected $table = 'drug_regulatories';
+    
+    protected $primaryKey = 'regulatory_id';
 
     protected $fillable = [
         'regulatory_name',

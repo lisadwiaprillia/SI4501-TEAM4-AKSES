@@ -35,8 +35,8 @@
                                     <thead>
                                         <tr>
                                             <th scope="row">No</th>
-                                            <th scope="row">Form </th>
-                                            <th scope="row">Kemasan dan Harga</th>
+                                            <th scope="row">Sediaan </th>
+                                            <th scope="row">Sediaan dan Harga</th>
                                             <th scope="row">Aksi</th>
                                         </tr>
                                     </thead>

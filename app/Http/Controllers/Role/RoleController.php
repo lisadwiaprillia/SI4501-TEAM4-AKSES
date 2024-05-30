@@ -46,7 +46,8 @@ class RoleController extends Controller
 
             return back();
         } catch (ValidationException $error) {
-            dd($error);
+            Session::flash('error', $error->getMessage());
+            return back();
         }
     }
 
@@ -76,6 +77,12 @@ class RoleController extends Controller
     {
         $role = Role::find($request->role_id);
         $role->delete();
+
+        if (!$role) {
+            Session::flash('error', 'Error ketika menghapus data');
+            return back();
+        }
+
         Session::flash('success-to-delete-role', 'Role ' . $role->role_name . ' Berhasil Dihapus');
         return redirect(url('/roles'));
     }
