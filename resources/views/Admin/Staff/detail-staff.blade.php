@@ -14,7 +14,7 @@
         <div class="container mt-5">
             <div class="card mx-auto" style="width: 60vw;">
                 <div class="card-header text-center">
-                    <h6>Detail Data Institusi {{ $institution->institution_name }}</h6>
+                    <h6>Detail Data Pegawai</h6>
                 </div>
                 <div class="table-responsive">
                     <form action="" method="POST">
@@ -23,68 +23,53 @@
                         <table class="table table-striped">
                             <tbody>
                                 <tr>
-                                    <th scope="row">No Telepon Institusi</th>
+                                    <th scope="row">Nama Pegawai</th>
                                     <td>:</td>
                                     <td>
-                                        {{ $institution->institution_phone }}
+                                        {{ $staff->name }}
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th scope="row">Alamat Institusi</th>
+                                    <th scope="row">Email Pegawai</th>
                                     <td>:</td>
                                     <td>
-                                        {{ $institution->institution_address }}
-                                    </td>
-                                </tr>
-
-                                <tr>
-                                    <th scope="row">Pemilik Institusi</th>
-                                    <td>:</td>
-                                    <td>
-                                        {{ $institution->institution_chairman }}
+                                        {{ $staff->user_email }}
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <th scope="row">Bukti Kepemilikan Institusi</th>
+                                    <th scope="row">No HP Pegawai</th>
                                     <td>:</td>
                                     <td>
-                                        <img src="{{ asset('storage/' . $institution->institution_evidence) }}" alt="Bukti Kepemilikan Institusi"
-                                            style="max-width: 200px;">
+                                        {{ $staff->user_phone }}
                                     </td>
                                 </tr>
+
                                 <tr>
-                                    <th scope="row">Status Institusi</th>
-                                    <td>:</td>
-                                    <td class="fw-bold text-uppercase">
-                                        {{ $institution->institution_status }}
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">Kode Tiket Institusi</th>
+                                    <th scope="row">Alamat Pegawai</th>
                                     <td>:</td>
                                     <td>
-                                        {{ $institution->institution_ticket_code }}
+                                        {{ $staff->user_address }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Dibuat Pada</th>
                                     <td>:</td>
                                     <td>
-                                        {{ $institution->created_at->format('d M Y') }}
+                                        {{ $staff->created_at->format('d M Y') }}
                                     </td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Diubah Pada</th>
                                     <td>:</td>
                                     <td>
-                                        {{ $institution->updated_at->format('d M Y') }}
+                                        {{ $staff->updated_at->format('d M Y') }}
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <a type="button" class="btn mt-5 mx-3 my-3 back-btn"
-                            href="{{ url('/health-institution') }}">Kembali</a>
+                            href="{{ url('/health-staff') }}">Kembali</a>
                     </form>
                 </div>
             </div>

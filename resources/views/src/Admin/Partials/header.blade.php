@@ -48,7 +48,7 @@
                                 Data Institusi
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                <li><a class="dropdown-item @yield('drug-classes')" href=>Data Kelas Obat</a></li>
+                            <li><a class="dropdown-item @yield('institution')" href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a></li>
                                 <li><a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
                                 </li>
                                 <li>
@@ -66,7 +66,7 @@
                             </a>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                                 <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/drug/presentations') }}">Data
-                                    Kemasan Obat</a>
+                                    Sediaan Obat</a>
                                 <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data Kelas
                                     Obat</a>
                                 <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="#">
+                        <a href="{{ url('/logout') }}">
                             <span>
                                 Logout
                             </span>

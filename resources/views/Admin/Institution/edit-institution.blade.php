@@ -61,7 +61,7 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Bukti Kepemilikan Institusi</label>
-                            <input type="file" value="{{ $institution->institution_evidence }}" class="form-control"
+                            <input type="file" value="{{ asset('storage/' . $institution->institution_evidence) }}" class="form-control"
                                 id="exampleInputEmail1" aria-describedby="emailHelp" name="institution_evidence">
                         </div>
                         <div class="form-group">

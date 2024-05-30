@@ -125,5 +125,8 @@
     </section>
     <!-- end slider section -->
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> b3649330b6b39589838913249bad1448f073d02b
 @endsection

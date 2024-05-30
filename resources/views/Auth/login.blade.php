@@ -57,23 +57,25 @@
             <div class="row justify-content-center">
                 <div class="col-md-6">
                     <div class="login-container">
-                        @if (session()->has('registerProcessMessage'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('registerProcessMessage') }}
+                        @if (session()->has('login'))
+                            <div class="alert alert-danger text-capitalize alert-dismissible fade show" role="alert">
+                                {{ session('login') }}
                                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                             </div>
                         @endif
 
                         <h2 class="text-center mb-5">Login</h2>
 
-                        <form action="" method="POST">
+                        <!-- Main Fiture -->
+
+                        <form action="{{ route('login') }}" method="POST">
                             @csrf
                             <div class="form-group">
                                 <label for="username">Email</label>
-                                <input type="email" name="employeeEmail"
-                                    class="form-control @error('employeeEmail') is-invalid @enderror" required
-                                    value="" id="email" autofocus>
-                                @error('employeeEmail')
+                                <input type="email" name="user_email"
+                                    class="form-control @error('user_email') is-invalid @enderror" required
+                                    value="{{ old('user_email') }}" id="email" autofocus>
+                                @error('user_email')
                                     <div class="invalid-feedback">
                                         {{ $message }}
                                     </div>
@@ -82,11 +84,11 @@
 
                             <div class="form-group">
                                 <label for="password">Password</label>
-                                <input type="password" name="employeePassword" class="form-control" id="password" required>
+                                <input type="password" name="user_password" class="form-control" id="password" required>
                             </div>
 
                             <div class="form-group text-right">
-                                <a href="" class="back-link">Kembali</a>
+                                <a href="{{ route('index') }}" class="back-link">Kembali</a>
                             </div>
 
                             <button type="submit" name="login" class="btn btn-block login-btn">Login</button>
