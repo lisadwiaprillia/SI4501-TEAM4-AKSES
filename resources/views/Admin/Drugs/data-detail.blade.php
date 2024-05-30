@@ -1,59 +1,65 @@
 @extends('src.Admin.Template.main-template')
 @section('drug-data', 'active')
-@section('title', 'Data Obat')
+@section('title', 'Detail Data Obat')
 @section('content')
-
     <main>
         <div class="container mt-5">
-            @if (Session::has('success-to-update-drug-class'))
-                <div class="alert alert-success alert-dismissible fade show text-capitalize" role="alert">
-                    {{ Session::get('success-to-update-drug-class') }}
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+            <div class="card">
+                <div class="card-header">
+                    <h3>Detail Data Obat</h3>
                 </div>
-            @endif
-            <div class="card mx-auto" style="width: 60vw;">
-                <div class="card-header text-center">
-                    <h6>Detail Data Obat {{ $drugs_data->form }}</h6>
-                </div>
-                <div class="table-responsive">
-                    <table class="table table-striped">
+                <div class="card-body">
+                    <table class="table table-bordered">
                         <tbody>
                             <tr>
-                                <th scope="row">No</th>
-                                <td>:</td>
-                                <td>
-                                    {{ $drugs_data->form }}
-                                </td>
+                                <th scope="row">ID Obat</th>
+                                <td>{{ $drug_data->data_id }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Nama Obat</th>
-                                <td>:</td>
-                                <td>
-                                    {{ $drugs_data->packaging_and_price }}
-                                </td>
+                                <th scope="row">Konten</th>
+                                <td>{{ $drug_data->form }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Dibuat Pada</th>
-                                <td>:</td>
-                                <td>
-                                    {{ $drugs_data->created_at->format('d M Y') }}
-                                </td>
+                                <th scope="row">Indikasi</th>
+                                <td>{{ $drug_data->indication }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Diubah Pada</th>
-                                <td>:</td>
-                                <td>
-                                    {{ $drugs_data->updated_at->format('d M Y') }}
-                                </td>
+                                <th scope="row">Reaksi</th>
+                                <td>{{ $drug_data->reaction }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Klasifikasi</th>
+                                <td>{{ $drug_data->classification }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Peringatan</th>
+                                <td>{{ $drug_data->warning }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kontradiksi</th>
+                                <td>{{ $drug_data->contraindication }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Dosis</th>
+                                <td>{{ $drug_data->dosage }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Interaksi</th>
+                                <td>{{ $drug_data->interaction }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Regulasi</th>
+                                <td>{{ $drug_data->regulation }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Kategori Obat</th>
+                                <td>{{ $drug_data->category }}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <a type="button" class="btn mt-5 mx-3 my-3 back-btn"
-                        href="{{ url('/drug/data') }}">Kembali</a>
+                    <a href="{{ url('/drugs') }}" class="btn btn-secondary mt-3">Kembali</a>
                 </div>
             </div>
+        </div>
     </main>
-
 @endsection

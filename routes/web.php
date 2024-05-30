@@ -7,6 +7,7 @@ use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
 use App\Http\Controllers\Drugs\DataController;
+use App\Http\Controllers\Drugs\LaporanController;
 
 Route::get('/', [CitizenController::class, 'index']);
 
@@ -105,3 +106,5 @@ Route::get('/drugs/{data_id}/edit-data', [DataController::class, 'show_edit_data
 Route::put('/drugs/{data_id}/update-data', [DataController::class, 'update_drug_data_data']);
 
 Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
+
+// * Drug Laporan Stock Obat

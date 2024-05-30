@@ -12,9 +12,17 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('drug_data', function (Blueprint $table) {
-            $table->id('data_id');
-            $table->string('data_name', 100)->unique();
-            $table->text('data_desc');
+            $table->id();
+            $table->string('content');
+            $table->string('indication');
+            $table->string('reaction');
+            $table->string('classification');
+            $table->string('warning');
+            $table->string('contraindication');
+            $table->string('dosage');
+            $table->string('interaction');
+            $table->string('regulation');
+            $table->string('drug_category');
             $table->timestamps();
         });
     }
