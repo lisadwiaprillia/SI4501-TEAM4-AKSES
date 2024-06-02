@@ -1,4 +1,5 @@
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
+@section('drug-regulation', 'active')
 
 @section('title', 'Kategori Regulasi')
 
@@ -17,7 +18,7 @@
 
                         <div class="form-group">
                             <label for="name" class="form-label">Nama Regulasi</label>
-                            <input type="text" name="regulatory_name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
+                            <input type="text" name="name" id="name" class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}" required>
 
                             @error('name')
                                 <span class="invalid-feedback" role="alert">
@@ -26,21 +27,21 @@
                             @enderror
                         </div>
 
-                        <div class="form-group mt-3">
+                        <form class="form-group mt-3">
                             <label for="description" class="form-label">Deskripsi</label>
-                            <textarea name="regulatory_desc" id="description" class="form-control @error('description') is-invalid @enderror" rows="4" required>{{ old('description') }}</textarea>
+                            <textarea name="desc" id="description" class="form-control @error('description') is-invalid @enderror" rows="4" required>{{ old('description') }}</textarea>
 
                             @error('description')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                             @enderror
-                        </div>
+                            <div class="form-group mt-4">
+                                <button type="submit" class="btn" style="background-color: #019F90; color: white;">Simpan</button>
+                                <a href="{{ route('Admin.Drugs.listRegulatory') }}" class="btn btn-secondary">Kembali ⬅️</a>
+                            </div>
+</form>
 
-                        <div class="form-group mt-4">
-                            <button type="submit" class="btn" style="background-color: #019F90; color: white;">Simpan</button>
-                            <a href="{{ route('Admin.Drugs.listRegulatory') }}" class="btn btn-secondary">Kembali ⬅️</a>
-                        </div>
                     </form>
                 </div>
             </div>
@@ -50,7 +51,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById('categoryForm').addEventListener('submit', function(event) {
+    document.getElementById('regulatoryForm').addEventListener('submit', function(event) {
         event.preventDefault(); // Hindari pengiriman formulir
 
         // Kirim data ke server menggunakan AJAX
@@ -71,7 +72,7 @@
             }).then((result) => {
                 if (result.isConfirmed && data.status == 'success') {
                     // Redirect pengguna ke halaman list/categories
-                    window.location.href = "{{ route('categories.listCategories') }}";
+                    window.location.href = "{{ route('Admin.Drugs.listRegulatory') }}";
                 }
             });
         })

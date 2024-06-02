@@ -20,12 +20,12 @@ class RegulatoryController extends Controller
         try {
             $request->validate([
                 'name' => 'required|unique:drug_regulatories,regulatory_name',
-                'description' => 'required',
+                'desc' => 'required|unique:drug_regulatories,regulatory_desc'
             ]);
     
             $regulatory = new DrugRegulatory;
-            $regulatory->regulatory_name = $request->input('regulatory_name');
-            $category->regulatory_desc = $request->input('regulatory_desc');
+            $regulatory->regulatory_name = $request->input('name');
+            $regulatory->regulatory_desc = $request->input('desc');
             $regulatory->save();
     
             // Tampilkan SweetAlert2 popup
@@ -34,7 +34,8 @@ class RegulatoryController extends Controller
                 'message' => 'Data Regulasi ' . $regulatory->regulatory_name . 'Berhasil Disimpan'
             ];
     
-            return view('Admin.Drugs.listRegulatory'); // Berikan respons JSON
+            //return view('Admin.Drugs.listRegulatory'); // Berikan respons JSON
+            return response()->json($response);
     
         } catch (\Throwable $err) {
             dd($err);
@@ -43,8 +44,8 @@ class RegulatoryController extends Controller
 
     public function showEditRegulatoryForm($id)
     {
-        $regulatory = drug_regulatories::find($id);
-        return view('Admin.Drugs.editRegulatories', compact('regulatories'));
+        $regulatory = DrugRegulatory::find($id);
+        return view('Admin.Drugs.editRegulatory', compact('regulatory'));
     }  
 
     public function listRegulatory()
@@ -55,8 +56,8 @@ class RegulatoryController extends Controller
 
     public function editRegulatoryForm($id)
     {
-        $regulatory = drug_regulatories::findOrFail($id);
-        return view('Admin.Drugs.editRegulatory', compact('regulatories'));
+        $regulatory = DrugRegulatory::findOrFail($id);
+        return view('Admin.Drugs.editRegulatory', compact('regulatory'));
     }
 
     public function updateRegulatoryData(Request $request, $id)
@@ -67,12 +68,12 @@ class RegulatoryController extends Controller
                 'description' => 'required',
             ]);
 
-            $regulatory = drug_regulatories::findOrFail($id);
+            $regulatory = DrugRegulatory::findOrFail($id);
             $regulatory->regulatory_name = $request->input('name');
             $regulatory->regulatory_desc = $request->input('description');
             $regulatory->save();
 
-            Session::flash('success-to-update-category', 'Data Kategori ' . $category->category_name . ' Berhasil Diperbarui');
+            Session::flash('success-to-update-regulatory', 'Data Kategori ' . $regulatory->regulatory_name . ' Berhasil Diperbarui');
 
             return redirect(url('/list/regulatories'));
         } catch (\Throwable $err) {
@@ -83,7 +84,7 @@ class RegulatoryController extends Controller
     public function deleteRegulatory($id)
     {
     try {
-        $regulatory = drug_regulatories::findOrFail($id);
+        $regulatory = DrugRegulatory::findOrFail($id);
         $regulatory->delete();
 
         return response()->json(['message' => 'Kategori berhasil dihapus'], 200);

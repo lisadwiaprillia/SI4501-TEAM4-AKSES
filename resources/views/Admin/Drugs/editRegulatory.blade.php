@@ -1,4 +1,5 @@
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
+@section('drug-regulation', 'active')
 
 @section('title', 'Edit Regulasi')
 
@@ -72,7 +73,7 @@
                     timer: 1500
                 }).then(() => {
                     // Redirect ke halaman semula setelah animasi selesai
-                    window.location.href = "{{ route('drugs.listRegulatory') }}";
+                    window.location.href = "{{ route('Admin.Drugs.listRegulatory') }}";
                 });
             }
         });

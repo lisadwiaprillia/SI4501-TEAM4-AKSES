@@ -146,6 +146,8 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/edit/regulatories/{id}', [RegulatoryController::class, 'editRegulatoryForm'])->name('Admin.Drugs.editRegulatory');
     Route::put('/update/regulatories/{id}', [RegulatoryController::class, 'updateRegulatoryData'])->name('Admin.Drugs.updateRegulatoryData');
 
+    //Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory']); >>> DELETE IN MAINTENANCE <<<<
+
 });
 
 

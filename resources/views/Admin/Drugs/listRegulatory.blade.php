@@ -1,6 +1,7 @@
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
+@section('drug-regulation', 'active')
 
-@section('title', 'Daftar Regulasi')
+@section('title', 'Kategori Regulasi')
 
 @section('content')
 <div class="container mt-5">
@@ -12,9 +13,9 @@
                 </div>
 
                 <div class="card-body">
-                    @if (Session::has('success-to-create-category'))
+                    @if (Session::has('success-to-create-regulatory'))
                         <div class="alert alert-success">
-                            {{ Session::get('success-to-create-category') }}
+                            {{ Session::get('success-to-create-regulatory') }}
                         </div>
                     @endif
 
@@ -34,7 +35,7 @@
                                 <td>{{ $regulatory->regulatory_name }}</td>
                                 <td>{{ $regulatory->regulatory_desc }}</td>
                                 <td>
-                                    <a href="{{ route('drugs.editRegulatoryForm', $regulatory->regulatory_id) }}" class="btn btn-success">Edit</a>
+                                    <a href="{{ route('Admin.Drugs.editRegulatory', $regulatory->regulatory_id) }}" class="btn btn-success">Edit</a>
                                 </td>
                             </tr>
                         @endforeach
