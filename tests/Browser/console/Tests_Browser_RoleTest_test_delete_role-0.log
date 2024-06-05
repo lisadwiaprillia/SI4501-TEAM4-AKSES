@@ -1,0 +1,38 @@
+[
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/jquery-3.4.1.min.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1717036882324
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/bootstrap.js 6:0 Uncaught SyntaxError: Cannot use import statement outside a module",
+        "source": "javascript",
+        "timestamp": 1717036882342
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/custom.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1717036882449
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/jquery-3.4.1.min.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1717036883234
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/custom.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
+        "source": "network",
+        "timestamp": 1717036883356
+    },
+    {
+        "level": "SEVERE",
+        "message": "http:\/\/127.0.0.1:8001\/js\/bootstrap.js 6:0 Uncaught SyntaxError: Cannot use import statement outside a module",
+        "source": "javascript",
+        "timestamp": 1717036883359
+    }
+]
