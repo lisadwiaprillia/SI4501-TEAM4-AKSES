@@ -42,8 +42,14 @@
                         <div class="form-group mt-4">
                             <button type="submit" class="btn btn-primary">Simpan Perubahan</button>
                             <a href="{{ route('Admin.Drugs.listRegulatory') }}" class="btn btn-secondary">Batal</a>
-                            <button type="button" class="btn btn-danger" id="deleteCategory">Hapus</button>
+                            <button type="button" class="btn btn-danger" id="deleteRegulatoryButton">Hapus</button>
                         </div>
+                    </form>
+
+                    <!-- Form untuk menghapus regulasi -->
+                    <form id="deleteForm" action="{{ route('Admin.Drugs.deleteRegulatory', $regulatory->regulatory_id) }}" method="POST" style="display: none;">
+                        @csrf
+                        @method('DELETE')
                     </form>
                 </div>
             </div>
@@ -53,7 +59,7 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
-    document.getElementById('deleteRegulatory').addEventListener('click', function() {
+    document.getElementById('deleteRegulatoryButton').addEventListener('click', function() {
         Swal.fire({
             title: 'Apakah Anda yakin ingin menghapus {{ $regulatory->regulatory_name }}?',
             text: "Anda tidak akan dapat mengembalikan ini!",
@@ -65,6 +71,7 @@
             cancelButtonText: 'Batal'
         }).then((result) => {
             if (result.isConfirmed) {
+                document.getElementById('deleteForm').submit();
                 // Lakukan penghapusan data di sini
                 Swal.fire({
                     title: '{{ $regulatory->regulatory_name }} berhasil dihapus!',

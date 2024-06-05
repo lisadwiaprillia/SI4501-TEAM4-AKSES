@@ -137,7 +137,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
 
-     //CRUD Drug Regulatory Classification
+    //CRUD Drug Regulatory Classification
     Route::get('/add/regulatories', [RegulatoryController::class, 'showRegulatoryForm'])->name('Admin.Drugs.showRegulatory');
     Route::post('/add/regulatories', [RegulatoryController::class, 'storeRegulatoryData']);
 
@@ -146,7 +146,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/edit/regulatories/{id}', [RegulatoryController::class, 'editRegulatoryForm'])->name('Admin.Drugs.editRegulatory');
     Route::put('/update/regulatories/{id}', [RegulatoryController::class, 'updateRegulatoryData'])->name('Admin.Drugs.updateRegulatoryData');
 
-    //Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory']); >>> DELETE IN MAINTENANCE <<<<
+    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory'); //>>> DELETE IN MAINTENANCE <<<<
 
 });
 

@@ -79,7 +79,7 @@ class RegulatoryController extends Controller
         } catch (\Throwable $err) {
             dd($err);
         }
-    }
+    }   
     
     public function deleteRegulatory($id)
     {
@@ -87,9 +87,10 @@ class RegulatoryController extends Controller
         $regulatory = DrugRegulatory::findOrFail($id);
         $regulatory->delete();
 
-        return response()->json(['message' => 'Kategori berhasil dihapus'], 200);
+        response()->json(['message' => 'Kategori berhasil dihapus'], 200);
+        return redirect(url('/list/regulatories'));
     } catch (\Exception $e) {
-        return response()->json(['message' => 'Gagal menghapus kategori'], 500);
+        response()->json(['message' => 'Gagal menghapus kategori'], 500);
     }
-}
+    }
 }
