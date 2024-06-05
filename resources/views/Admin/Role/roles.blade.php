@@ -3,6 +3,8 @@
 @section('roles', 'active')
 @section('title', 'Roles')
 @section('content')
+
+
     <main>
         <main>
             <div class="container mt-5">
@@ -26,7 +28,8 @@
                             </div>
                         @endif
                         <p class="mt-5 ml-3 fw-bold fs-3">Manajemen Role</p>
-                        <a href="{{ url('/create-roles-form') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
+                        <a href="{{ url('/create-roles-form') }}"
+                            class="create-role btn btn-primary ml-3 medicine-add-btn">Buat
                             Role</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
@@ -42,21 +45,24 @@
                                         @foreach ($roles as $role)
                                             <tr>
                                                 <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $role->role_name }}</td>
+                                                <td class="role-name">{{ $role->role_name }}</td>
                                                 <td>
 
                                                     <a href="{{ url('/roles/' . $role->role_id . '/details') }}"
-                                                        class="btn btn-primary back-btn mr-2">Detail</a>
+                                                        class="detail-button btn btn-primary back-btn mr-2">Detail</a>
 
                                                     <a href="{{ url('/update-roles/' . $role->role_id . '/edit') }}"
-                                                        class="btn btn-success mr-2">Edit</a>
+                                                        class="update-button btn btn-success mr-2 ">Edit</a>
+
+                                                    <button id="copyUrlButton" class="btn btn-primary">Share</button>
 
                                                     <form class="d-inline"
                                                         action="{{ url('/delete-role/' . $role->role_id . '/delete') }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')
-                                                        <button class="btn btn-danger mr-2" type="submit">Hapus</button>
+                                                        <button class="delete-btn btn btn-danger mr-2"
+                                                            type="submit">Hapus</button>
                                                     </form>
                                                 </td>
                                             </tr>
@@ -69,4 +75,17 @@
                 </main>
             </div>
         </main>
+        <script>
+            const copyUrlButton = document.getElementById('copyUrlButton');
+            copyUrlButton.addEventListener('click', async function() {
+                try {
+                    const url = window.location.href;
+                    const response = await navigator.clipboard.writeText(url);
+
+                    alert('URL copied to clipboard: ' + url);
+                } catch (err) {
+                    console.error('Failed to copy URL: ', err);
+                }
+            });
+        </script>
     @endsection

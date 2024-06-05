@@ -59,10 +59,10 @@
                                                 <td>{{ $drug_class->class_name }}</td>
                                                 <td>
                                                     <a href="{{ url('/drug/class/' . $drug_class->class_id) }}"
-                                                        class="btn btn-primary back-btn mr-2">Detail</a>
+                                                        class="detail-button btn btn-primary back-btn mr-2">Detail</a>
 
                                                     <a href="{{ url('/drugs/class/' . $drug_class->class_id . '/edit-form') }}"
-                                                        class="btn btn-success mr-2">Edit</a>
+                                                        class="update-button btn btn-success mr-2">Edit</a>
 
                                                     <form class="d-inline"
                                                         action="{{ url('/drugs/classes/' . $drug_class->class_id . '/delete') }}"
