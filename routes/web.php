@@ -6,6 +6,10 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
+<<<<<<< HEAD
+use App\Http\Controllers\Drugs\DataController;
+use App\Http\Controllers\Drugs\LaporanController;
+=======
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -14,6 +18,7 @@ use App\Http\Middleware\AuthMiddleware;
 use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Categories\CategoriesController;
+>>>>>>> b3649330b6b39589838913249bad1448f073d02b
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
 
@@ -115,6 +120,26 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     //* Institution Routes
 
+<<<<<<< HEAD
+Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+
+// * Drug Data Obat 
+
+Route::get('/drug/data', [DataController::class,  'show_drug_data']);
+
+Route::get('/drug/data/{data_id}', [DataController::class, 'show_detail_data']);
+
+Route::get('/drugs/create-drug=data', [DataController::class, 'show_create_data_form']);
+
+Route::post('/drugs/create-drug=data', [DataController::class, 'store_drug_data_data']);
+
+Route::get('/drugs/{data_id}/edit-data', [DataController::class, 'show_edit_data_form']);
+Route::put('/drugs/{data_id}/update-data', [DataController::class, 'update_drug_data_data']);
+
+Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
+
+// * Drug Laporan Stock Obat
+=======
     Route::get('/health-staff', [StaffController::class, 'showStaff']); #NEXT FEATURE
     Route::post('/health-staff', [StaffController::class, 'store1']); #NEXT FEATURE
 
@@ -163,3 +188,4 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
 });
+>>>>>>> b3649330b6b39589838913249bad1448f073d02b
