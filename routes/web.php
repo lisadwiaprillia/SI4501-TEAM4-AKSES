@@ -129,7 +129,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
     Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
 
-    // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+    Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
 
 });
 
@@ -137,7 +137,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 // * Restricted Access admin
 
 Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
-    // route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
+    route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
 
 
     Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
