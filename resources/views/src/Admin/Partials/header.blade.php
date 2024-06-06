@@ -41,6 +41,8 @@
                                 <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>
                             </li>
                         </ul>
+
+                        @if (Session::get('isAdmin') === true)
                         <div class="dropdown show nav-link mr-5">
                             <a class="dropdown-toggle shadow-none nav-link" href="#" role="button"
                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
@@ -75,6 +77,8 @@
                             </div>
                         </div>
                     </div>
+                        @endif
+                        
                     <div class="quote_btn-container">
                         <a href="{{ url('/logout') }}">
                             <span>
