@@ -77,24 +77,32 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::get('/drug/data', [DataController::class,  'show_drug_data']);
 
-    Route::get('/drug/data/{data_id}', [DataController::class, 'show_detail_data']);
+    Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
 
-    Route::get('/drugs/create-drug=data', [DataController::class, 'show_create_data_form']);
+    Route::get('/drugs/create-drug-data', [DataController::class, 'show_create_data_form']);
 
-    Route::post('/drugs/create-drug=data', [DataController::class, 'store_drug_data_data']);
+    Route::post('/drugs/create-drug-data', [DataController::class, 'store_drug_data_data']);
+  
+  
+    Route::get('/drugs/{drug_id}/edit-data', [DataController::class, 'show_edit_data_form']);
+    Route::patch('/drugs/{drug_id}/update-data', [DataController::class, 'update_drug_data_data']);
 
-    Route::get('/drugs/{data_id}/edit-data', [DataController::class, 'show_edit_data_form']);
-    Route::put('/drugs/{data_id}/update-data', [DataController::class, 'update_drug_data_data']);
 
-    Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
+    Route::delete('/drugs/{drug_id}/delete', [DataController::class, 'destroy_drug_data']);
+
+
+
+    // * Drug Laporan Stock Obat
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+
+
+
 
     // * Drug Laporan Stock Obat
     Route::get('/health-staff', [StaffController::class, 'showStaff']);
     Route::post('/health-staff', [StaffController::class, 'store1']);
 });
-
-
-
 
 
 
@@ -187,3 +195,4 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
 Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {
 });
+

@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
                 <a class="navbar-brand"
-                    href="{{ Session::get('isAdmin') === true ? url('/staff-dashboard') : url('/admin-dashboard') }}">
+                    href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/admin-dashboard') }}">
                     <img src="{{ asset('img/logo_akses.png') }}" alt="logo akses">
                 </a>
 
