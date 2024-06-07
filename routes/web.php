@@ -32,11 +32,17 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::get('/health-institution/request', [InstitutionController::class, 'showInstitutionForm'])->name('institution');
 
 
-    Route::get('/konsultasikan-sekarang', function () {return view('Citizen.Home.realtime-chatting');});
+    Route::get('/konsultasikan-sekarang', function () {
+        return view('Citizen.Home.realtime-chatting');
+    });
 
-    Route::get('/cari-obat', function () {return view('Citizen.Home.cari-obat');});
+    Route::get('/cari-obat', function () {
+        return view('Citizen.Home.cari-obat');
+    });
 
-    Route::get('/education-page', function () {return view('Citizen.Home.education-page');});
+    Route::get('/education-page', function () {
+        return view('Citizen.Home.education-page');
+    });
 
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
 
@@ -82,20 +88,24 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
 
-// * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']); 
-    Route::post('/health-staff', [StaffController::class, 'store1']); 
-
-
+    // * Drug Laporan Stock Obat
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
 });
+
+
+
+
 
 
 // * Restricted Access admin
 
 Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
 
-  //* Roles
-    Route::get('/roles', [RoleController::class, 'showRole']); //admin
+    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
+
+    //* Roles
+    Route::get('/roles', [RoleController::class, 'showRole']);
 
     Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
 
@@ -146,7 +156,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
 
     Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
- 
+
 
     Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
 
@@ -176,5 +186,4 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 });
 
 Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {
-
 });

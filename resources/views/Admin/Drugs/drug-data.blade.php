@@ -26,8 +26,7 @@
                         @endif
 
                         <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Data obat</p>
-                        <a href="{{ url('/drugs/create-drug=data') }}"
-                            class="btn btn-primary ml-3 medicine-add-btn">Buat
+                        <a href="{{ url('/drugs/create-drug=data') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
                             Data Obat</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
