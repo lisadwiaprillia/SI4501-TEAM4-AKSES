@@ -67,7 +67,6 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     route::get('/staff-dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
 
-
     // * Drug Data Obat 
 
     Route::get('/drug/data', [DataController::class,  'show_drug_data']);

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DrugPresentation;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Drug extends Model
 {
@@ -28,4 +29,7 @@ class Drug extends Model
         'class_id',
         'regulatory_id',
     ];
+
 }
+
+

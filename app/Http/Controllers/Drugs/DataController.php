@@ -15,14 +15,14 @@ class DataController extends Controller
     // Menampilkan semua data obat
     public function show_drug_data()
     {
-        $drugs_data = DrugData::orderBy('created_at')->get();
+        $drugs_data = Drug::orderBy('created_at')->get();
         return view('Admin.Drugs.drug-data', compact('drugs_data'));
     }
 
     // Menampilkan detail data obat
     public function show_detail_data($data_id)
     {
-        $drug_data = DrugData::findOrFail($data_id);
+        $drug_data = Drug::findOrFail($data_id);
         return view('Admin.Drugs.data-detail', compact('drug_data'));
     }
 
@@ -37,7 +37,7 @@ class DataController extends Controller
     public function store_drug_data_data(Request $request)
     {
         try {
-            $drug_data = new DrugData;
+            $drug_data = new Drug;
 
             $drug_data_validation = $request->validate([
                 'content' => 'required|unique:drug_data',
@@ -100,7 +100,7 @@ class DataController extends Controller
             'drug_category' => 'required',
         ]);
 
-        $drug_data = DrugData::findOrFail($data_id);
+        $drug_data = Drug::findOrFail($data_id);
         $drug_data->update($validatedData);
 
         Session::flash('success-to-update-drug-data', 'Data Obat ' . $validatedData['form'] . ' Berhasil Diperbaharui');
@@ -111,7 +111,7 @@ class DataController extends Controller
     // Menghapus data obat
     public function destroy_data($data_id)
     {
-        $drug_data = DrugData::findOrFail($data_id);
+        $drug_data = Drug::findOrFail($data_id);
         $drug_data->delete();
 
         Session::flash('success-to-delete-drug-data', 'Data Data Obat ' . $drug_data->form . ' Berhasil Dihapus');
