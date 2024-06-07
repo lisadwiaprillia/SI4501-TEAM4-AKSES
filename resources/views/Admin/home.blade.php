@@ -23,7 +23,7 @@
                                     <h1>
                                         Halo, <br>
                                         <span>
-                                            Yunisa Aini Fatmala
+                                            {{ Session::get('user') }}
                                         </span>
                                     </h1>
                                     <p>
@@ -56,7 +56,7 @@
                                     <h1>
                                         Halo, <br>
                                         <span>
-                                        Yunisa Aini Fatmala
+                                            {{ Session::get('user') }}
                                         </span>
                                     </h1>
                                     <p>
@@ -89,7 +89,7 @@
                                     <h1>
                                         Halo, <br>
                                         <span>
-                                        Yunisa Aini Fatmala
+                                            {{ Session::get('user') }}
                                         </span>
                                     </h1>
                                     <p>
@@ -125,4 +125,7 @@
     </section>
     <!-- end slider section -->
     </div>
+
+
+
 @endsection
