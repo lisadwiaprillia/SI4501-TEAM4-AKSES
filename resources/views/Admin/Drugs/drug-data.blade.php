@@ -42,6 +42,8 @@
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
+
+                                            <th scope="row">No </th>
                                             <th scope="row">Nama Obat </th>
                                             <th scope="row">Kandungan </th>
                                             <th scope="row">Indikasi / Digunakan Untuk</th>
@@ -57,6 +59,7 @@
                                                 <td>{{ $drug_data->drug_name }}</td>
                                                 <td>{{ $drug_data->contents }}</td>
                                                 <td>{{ $drug_data->indications }}</td>
+                                                <td>{{ $drug_data->dosage }}</td>
                                                 <td>{{ $drug_data->drug_class->class_name }}</td>
                                                 <td>
                                                     <a href="{{ url('/drug/data/' . $drug_data->drug_id) }}"
