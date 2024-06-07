@@ -25,12 +25,17 @@
                             </div>
                         @endif
 
+<<<<<<< HEAD
 
                         
                         <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Presentasi obat</p>
                         <a href="{{ url('/drugs/create-drug=presentation') }}"
+=======
+                        <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Sediaan obat</p>
+                        <a href="{{ url('/drugs/create-drug-presentation') }}"
+>>>>>>> 56b74069dd610b02345d5cf6013adb7bea0dbeb0
                             class="btn btn-primary ml-3 medicine-add-btn">Buat
-                            Presentasi Obat</a>
+                            Sediaan Obat</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -45,9 +50,10 @@
                                     <tbody>
                                         @foreach ($drugs_presentations as $drug_presentation)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $drug_presentation->form }}</td>
-                                                <td>{{ $drug_presentation->packaging_and_price }}</td>
+                                                <td class="text-capitalize">{{ $loop->iteration }}</td>
+                                                <td class="text-capitalize">{{ $drug_presentation->form }}</td>
+                                                <td class="text-capitalize">{{ $drug_presentation->packaging_and_price }}
+                                                </td>
                                                 <td>
                                                     <a href="{{ url('/drug/presentations/' . $drug_presentation->presentation_id) }}"
                                                         class="btn btn-primary back-btn mr-2">Detail</a>

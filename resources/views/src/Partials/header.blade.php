@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="login">
+                        <a href="{{ url('/login') }}">
                             <span>
                                 Login
                             </span>

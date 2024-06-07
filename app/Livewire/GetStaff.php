@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire;
+
 use App\Models\User;
 use Livewire\Component;
 
@@ -11,6 +12,6 @@ class GetStaff extends Component
     {
         $staff = User::where('user_status', $this->search)->get();
         // dd($staff);
-        return view('livewire.get-staff' , ['staff' => $staff]);
+        return view('livewire.get-staff', ['staff' => $staff]);
     }
 }
