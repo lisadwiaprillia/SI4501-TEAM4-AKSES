@@ -6,7 +6,7 @@
         <div class="container mt-5">
             <div class="card">
                 <div class="card-header mt-2">
-                    <h3>Detail Data Obat {{$drug_data->drug_name}}</h3>
+                    <h3>Detail Data Obat {{ $drug_data->drug_name }}</h3>
                 </div>
                 <div class="card-body">
                     <table class="table table-bordered">

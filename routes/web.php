@@ -139,47 +139,4 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
     Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
-
-
-    // * Categories of Post
-
-    Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
-    Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
-
-    Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
-
-    Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
-    Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
-
-    Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
-
-
-    Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
-
-    Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
-
-    Route::get('/health-institution/{institution_id}/details', [InstitutionController::class, 'showInstitutionDetail']);
-
-    Route::patch('/verification-request/update-status/{institution_id}', [InstitutionController::class, 'updateStatus']);
-
-    Route::patch('/verification-request/reject/{institution_id}', [InstitutionController::class, 'rejectStatus']);
-
-    Route::get('/health-institution/{institution_id}/more-details', [InstitutionController::class, 'InstitutionMoreDetail']);
-
-    Route::get('/health-institution', [InstitutionController::class, 'showInstitutions']);
-
-    Route::get('/health-institution/{institution_id}/edit', [InstitutionController::class, 'showEditInstitutionForm']);
-    Route::patch('/health-institution/{institution_id}/update', [InstitutionController::class, 'updateInstitutionData']);
-
-    Route::delete('/health-inzcvxstitution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
-
-    // CRUD Staff for Admin
-    Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
-    Route::get('/health-staff/{user_id}/edit', [StaffController::class, 'showEditStaffForm']);
-    Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateStaffData']);
-
-    Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
-});
-
-Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {
 });
