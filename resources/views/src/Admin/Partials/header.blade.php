@@ -96,7 +96,7 @@
                                     Data Edukasi
                                 </a>
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/add/categories') }}">Data
+                                    <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/list/categories') }}">Data
                                         Kategori Edukasi</a>
                                 </div>
                             </div>
