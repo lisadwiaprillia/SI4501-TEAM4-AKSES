@@ -103,4 +103,16 @@ class StaffController extends Controller
             dd($error);
         }
     }
+
+
+    public function show_admin_dashboard()
+    {
+        return view('Admin.home', [
+            'total_drug' => Drug::count(),
+            'total_admin' => User::where('role_id', '=', '3')->count(),
+            'total_apoteker' => User::where('role_id', '=', '4')->count(),
+            'total_user' => User::count(),
+            'total_normal_user' => User::where('role_id', '=', '1')->count(),
+        ]);
+    }
 }

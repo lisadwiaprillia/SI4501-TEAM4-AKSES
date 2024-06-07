@@ -43,7 +43,11 @@ class AuthController extends Controller
         Session::put('isApoteker', $user[0]->role_id === 4 ? true : false);
         Session::put('isAdmin', $user[0]->role_id === 3 ? true : false);
 
-        return redirect(url('/staff-dashboard'))->with('loginSuccess', 'Proses Login berhasil');
+        if (Session::get('isAdmin' === false)) {
+            return redirect(url('/staff-dashboard'))->with('loginSuccess', 'Proses Login berhasil');
+        }
+
+        return redirect(url('/admin-dashboard'))->with('loginSuccess', 'Proses Login berhasil');
     }
 
     public function showRegisterForm()
@@ -96,6 +100,7 @@ class AuthController extends Controller
         Session::forget('user');
         Session::forget('role_id');
         Session::forget('user_id');
+        Session::invalidate();
         return redirect(url('/'));
     }
 }
