@@ -23,28 +23,28 @@
                             <tr>
                                 <th scope="row">Sediaan Obat</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drugs_presentation->form }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Sediaan Dan Harga</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drugs_presentation->packaging_and_price }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Dibuat Pada</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drugs_presentation->created_at->format('d M Y') }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Diubah Pada</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drugs_presentation->updated_at->format('d M Y') }}
                                 </td>
                             </tr>

@@ -1,5 +1,5 @@
 <!-- Import Template -->
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
 
 <!-- Set Title Halaman -->
 @section('title', 'Akses')
@@ -49,8 +49,8 @@
                                     <th scope="row">Bukti Kepemilikan Institusi</th>
                                     <td>:</td>
                                     <td>
-                                        <img src="{{ asset('storage/' . $institution->institution_evidence) }}" alt="Bukti Kepemilikan Institusi"
-                                            style="max-width: 200px;">
+                                        <img src="{{ asset('storage/' . $institution->institution_evidence) }}"
+                                            alt="Bukti Kepemilikan Institusi" style="max-width: 200px;">
                                     </td>
                                 </tr>
                                 <tr>

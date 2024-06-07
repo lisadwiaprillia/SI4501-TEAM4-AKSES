@@ -39,24 +39,24 @@
                                 </button>
                             </div>
                         @endif
-                        <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen kelas obat</p>
+                        <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Klasifikasi obat</p>
                         <a href="{{ url('/drugs/class/create-form') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
-                            Kelas Obat</a>
+                            Klasifikasi Obat</a>
                         <div class="container mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                         <tr>
                                             <th scope="row">No</th>
-                                            <th scope="row">Nama Kelas</th>
+                                            <th scope="row">Nama Klasifikasi</th>
                                             <th scope="row">Aksi</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($drug_classes as $drug_class)
                                             <tr>
-                                                <td>{{ $loop->iteration }}</td>
-                                                <td>{{ $drug_class->class_name }}</td>
+                                                <td class="text-capitalize">{{ $loop->iteration }}</td>
+                                                <td class="text-capitalize">{{ $drug_class->class_name }}</td>
                                                 <td>
                                                     <a href="{{ url('/drug/class/' . $drug_class->class_id) }}"
                                                         class="btn btn-primary back-btn mr-2">Detail</a>

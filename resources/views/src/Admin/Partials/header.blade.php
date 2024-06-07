@@ -52,9 +52,14 @@
                                     Data Institusi
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <li><a class="dropdown-item @yield('institution')"
-                                            href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a></li>
-                                    <li><a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
+                                    <li>
+                                        <a class="dropdown-item @yield('institution')"
+                                            href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @yield('institution')"
+                                            href="{{ url('/verificaiton-request') }}">Data
+                                            Permohonan Verifikasi</a>
                                     </li>
                                     <li>
                                         <hr class="dropdown-divider">
@@ -65,7 +70,7 @@
                                 </ul>
                             </div>
 
-                            <div class="dropdown show">
+                            <div class="dropdown show mr-5">
                                 <a class="dropdown-toggle shadow-none" href="#" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" style="color: black">
@@ -76,11 +81,23 @@
                                         href="{{ url('/drug/presentations') }}">Data
                                         Sediaan Obat</a>
                                     <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data
-                                        Kelas
+                                        Klasifikasi
                                         Obat</a>
                                     <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
                                     <a class="dropdown-item @yield('drug-data')" href="{{ url('/drug/data') }}">Data
                                         Obat</a>
+                                </div>
+                            </div>
+
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle shadow-none" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" style="color: black">
+                                    Data Edukasi
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/add/categories') }}">Data
+                                        Kategori Edukasi</a>
                                 </div>
                             </div>
                     </div>

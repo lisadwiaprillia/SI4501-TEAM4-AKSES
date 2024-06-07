@@ -56,12 +56,15 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
 
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
+
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
 
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
+
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
 
     Route::get('/health-institution/check-status', [InstitutionController::class, 'showVerificationStatus']);
+
     Route::post('/health-institution/status', [InstitutionController::class, 'VerificationStatus']);
 
     Route::get('/health-institution/status', [InstitutionController::class, 'showVerificationStatus']);
@@ -121,7 +124,8 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
 
-    //* Roles
+    // Start Of Role Section
+
     Route::get('/roles', [RoleController::class, 'showRole']);
 
     Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
@@ -133,7 +137,11 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
 
-    // * Drug Class
+    // End of Role Section
+
+
+    // Start Of Drug Classification
+
     Route::get('/drugs/classes', [ClassController::class, 'showDrugClasses']);
 
     Route::get('/drug/class/{class_id}', [ClassController::class, 'showDetailDrugClass']);
@@ -146,7 +154,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/drugs/classes/{class_id}/delete', [ClassController::class, 'destroyDrugClass']);
 
-    // * Drug Presentation 
+    // End of Drug Classification Section
+
+
+    // Start Of Drug Presentation
 
     Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation']);
 
@@ -161,8 +172,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
 
+    // End of Drug Presentation Section
 
-    // * Categories of Post
+
+    // Categories of Post
 
     Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
     Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
@@ -174,9 +187,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
 
+    // End Of Categories of Post
 
 
-    Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
+    // Start Of Insitution Data
 
     Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);
 
@@ -195,12 +209,21 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/health-inzcvxstitution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
-    // CRUD Staff for Admin
+
+    // End Of Insitution Data
+
+
+    // Start Of Staff Data
+
+
     Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
+
     Route::get('/health-staff/{user_id}/edit', [StaffController::class, 'showEditStaffForm']);
     Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateStaffData']);
 
     Route::delete('/health-staff/{user_id}/delete', [StaffController::class, 'burnStaff']);
+
+    // End OfStart Of Staff Data
 });
 
 Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {

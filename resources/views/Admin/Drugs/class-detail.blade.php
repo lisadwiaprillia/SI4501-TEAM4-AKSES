@@ -15,36 +15,36 @@
             @endif
             <div class="card mx-auto" style="width: 60vw;">
                 <div class="card-header text-center">
-                    <h6>Detail Data Kelas Obat {{ $drug_class->class_name }}</h6>
+                    <h6>Detail Data Klasifikasi Obat {{ $drug_class->class_name }}</h6>
                 </div>
                 <div class="table-responsive">
                     <table class="table table-striped">
                         <tbody>
                             <tr>
-                                <th scope="row">Nama Kelas Obat</th>
+                                <th scope="row">Nama Klasifikasi Obat</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drug_class->class_name }}
                                 </td>
                             </tr>
                             <tr>
-                                <th scope="row">Deskripsi Kelas Obat</th>
+                                <th scope="row">Deskripsi Klasifikasi Obat</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drug_class->class_desc }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Dibuat Pada</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drug_class->created_at->format('d M Y') }}
                                 </td>
                             </tr>
                             <tr>
                                 <th scope="row">Diubah Pada</th>
                                 <td>:</td>
-                                <td>
+                                <td class="text-capitalize">
                                     {{ $drug_class->updated_at->format('d M Y') }}
                                 </td>
                             </tr>
