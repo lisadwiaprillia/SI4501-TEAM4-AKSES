@@ -22,70 +22,139 @@
                     </div>
                 @endif
 
-                <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">Edit Data Obat</p>
-                <a href="{{ url('/drugs') }}" class="btn btn-secondary ml-3">Kembali</a>
-
                 <div class="card mt-4">
-                    <div class="card-body">
-                        <form action="{{ url('/drugs/' . $drug_data->id . '/update') }}" method="POST">
-                            @csrf
-                            @method('PUT')
-                            
-                            <div class="form-group">
-                                <label for="form">Konten</label>
-                                <input type="text" class="form-control" id="form" name="form" value="{{ $drug_data->form }}" required>
-                            </div>
+                    <div class="card">
+                        <div class="card-header mt-2 text-capitalize">
+                            <h3>Form Perubahan Data obat</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="{{ url('/drugs/' . $drug_data->drug_id . '/update-data') }}" method="POST">
+                                @csrf
+                                @method('PATCH')
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="drug_name">Nama Obat</label>
+                                            <input type="text" class="form-control" id="drug_name" name="drug_name"
+                                                value="{{ old('drug_name', $drug_data->drug_name ?? '') }}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contents">Kandungan</label>
+                                            <input type="text" class="form-control" id="contents" name="contents"
+                                                value="{{ old('contents', $drug_data->contents ?? '') }}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="indications">Indikasi/ Dipakai Untuk</label>
+                                            <input type="text" class="form-control" id="indications" name="indications"
+                                                value="{{ old('indications', $drug_data->indications ?? '') }}" required>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="packaging_and_price">Indikasi</label>
-                                <input type="text" class="form-control" id="packaging_and_price" name="packaging_and_price" value="{{ $drug_data->packaging_and_price }}" required>
-                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="dosage">Dosis</label>
+                                            <input type="text" class="form-control" id="dosage" name="dosage"
+                                                value="{{ old('dosage', $drug_data->dosage ?? '') }}" required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contraindication">Kontraindikasi</label>
+                                            <input type="text" class="form-control" id="contraindication"
+                                                name="contraindication"
+                                                value="{{ old('contraindication', $drug_data->contraindication ?? '') }}"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="special_precautions">Pencegahan Khusus</label>
+                                            <input type="text" class="form-control" id="special_precautions"
+                                                name="special_precautions"
+                                                value="{{ old('special_precautions', $drug_data->special_precautions ?? '') }}"
+                                                required>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="reaction">Reaksi</label>
-                                <input type="text" class="form-control" id="reaction" name="reaction" value="{{ $drug_data->reaction }}" required>
-                            </div>
+                                    <div class="col-md-4">
+                                        <div class="form-group">
+                                            <label for="drug_interaction">Interaksi Obat</label>
+                                            <input type="text" class="form-control" id="drug_interaction"
+                                                name="drug_interaction"
+                                                value="{{ old('drug_interaction', $drug_data->drug_interaction ?? '') }}"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="adverse_reactions">Reaksi merugikan</label>
+                                            <input type="text" class="form-control" id="adverse_reactions"
+                                                name="adverse_reactions"
+                                                value="{{ old('adverse_reactions', $drug_data->adverse_reactions ?? '') }}"
+                                                required>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="atc_classification">Anatomical Therapeutic Chemical (ATC)</label>
+                                            <input type="text" class="form-control" id="atc_classification"
+                                                name="atc_classification"
+                                                value="{{ old('atc_classification', $drug_data->atc_classification ?? '') }}"
+                                                required>
+                                        </div>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="classification">Klasifikasi</label>
-                                <input type="text" class="form-control" id="classification" name="classification" value="{{ $drug_data->classification }}" required>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="presentation_id">Sediaan Obat</label>
+                                        <select class="form-control" id="presentation_id" name="presentation_id" required>
+                                            <option value="{{ $drug_data->drug_presentation->presentation_id }}" selected>
+                                                {{ $drug_data->drug_presentation->form }}</option>
+                                            @foreach ($drug_presentation as $presentation)
+                                                @if ($drug_data->drug_presentation->form === $presentation->form)
+                                                    @continue
+                                                @else
+                                                    <option value="{{ $presentation->presentation_id }}">
+                                                        {{ $presentation->form }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="warning">Peringatan</label>
-                                <input type="text" class="form-control" id="warning" name="warning" value="{{ $drug_data->warning }}" required>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="class_id">Klasifikasi Obat</label>
+                                        <select class="form-control" id="class_id" name="class_id" required>
+                                            <option value="{{ $drug_data->drug_class->class_id }}" selected>
+                                                {{ $drug_data->drug_class->class_name }}</option>
+                                            @foreach ($drug_class as $class)
+                                                @if ($drug_data->drug_class->class_name === $class->class_name)
+                                                    @continue
+                                                @else
+                                                    <option value="{{ $class->class_id }}">{{ $class->class_name }}
+                                                    </option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="contraindication">Kontradiksi</label>
-                                <input type="text" class="form-control" id="contraindication" name="contraindication" value="{{ $drug_data->contraindication }}" required>
-                            </div>
+                                    <div class="form-group">
+                                        <label for="regulatory_id">Regulasi Obat</label>
+                                        <select class="form-control" id="regulatory_id" name="regulatory_id" required>
+                                            <option value="{{ $drug_data->drug_regulatory->regulatory_id }}" selected>
+                                                {{ $drug_data->drug_regulatory->regulatory_name }}</option>
+                                            @foreach ($drug_regulatory as $reg)
+                                                @if ($drug_data->drug_regulatory->regulatory_name === $reg->regulatory_name)
+                                                    @continue
+                                                @else
+                                                    <option value="{{ $reg->regulatory_id }}">{{ $reg->regulatory_name }}
+                                                @endif
 
-                            <div class="form-group">
-                                <label for="dosage">Dosis</label>
-                                <input type="text" class="form-control" id="dosage" name="dosage" value="{{ $drug_data->dosage }}" required>
-                            </div>
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
 
-                            <div class="form-group">
-                                <label for="interaction">Interaksi</label>
-                                <input type="text" class="form-control" id="interaction" name="interaction" value="{{ $drug_data->interaction }}" required>
-                            </div>
+                                </div>
 
-                            <div class="form-group">
-                                <label for="regulation">Regulasi</label>
-                                <input type="text" class="form-control" id="regulation" name="regulation" value="{{ $drug_data->regulation }}" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="drug_category">Kategori Obat</label>
-                                <input type="text" class="form-control" id="drug_category" name="drug_category" value="{{ $drug_data->drug_category }}" required>
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">Simpan</button>
-                        </form>
+                                <a href="{{ url('/drug/data') }}" class="btn btn-primary mt-3 mr-3 back-btn">Kembali</a>
+                                <button type="submit" name="submit"
+                                    class="btn btn-primary submit-button mt-3">Perbaharui Data Obat</button>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
     </main>
 @endsection

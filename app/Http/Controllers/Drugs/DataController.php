@@ -6,116 +6,159 @@ use App\Models\DrugData;
 use App\Models\Drug;
 
 use App\Http\Controllers\Controller;
+use App\Models\DrugClass;
+use App\Models\DrugPresentation;
+use App\Models\DrugRegulatory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\ValidationException;
 
 class DataController extends Controller
 {
-    // Menampilkan semua data obat
     public function show_drug_data()
     {
-        $drugs_data = Drug::orderBy('created_at')->get();
-        return view('Admin.Drugs.drug-data', compact('drugs_data'));
+        $drugs_data = Drug::with('drug_class')->orderBy('created_at')->get();
+        return view('Admin.Drugs.drug-data', [
+            'drugs_data' => $drugs_data
+        ]);
     }
 
-    // Menampilkan detail data obat
-    public function show_detail_data($data_id)
+    public function show_detail_data(Request $request)
     {
-        $drug_data = Drug::findOrFail($data_id);
-        return view('Admin.Drugs.data-detail', compact('drug_data'));
+        $drug_data = Drug::with(['drug_class', 'drug_presentation', 'drug_regulatory'])->findOrFail($request->drug_id);
+        return view('Admin.Drugs.data-detail', [
+            'drug_data' => $drug_data
+        ]);
     }
 
     // Menampilkan form untuk membuat data obat baru
     public function show_create_data_form()
     {
-        $drugs = Drug::orderBy('created_at')->get();
-        return view('Admin.Drugs.create-data', compact('drugs'));
+        $drug_presentation = DrugPresentation::orderBy('form')->get();
+        $drug_class = DrugClass::orderBy('class_name')->get();
+        $drug_regulatory = DrugRegulatory::orderBy('regulatory_name')->get();
+        return view('Admin.Drugs.create-data', [
+            'drug_presentation' => $drug_presentation,
+            'drug_class' => $drug_class,
+            'drug_regulatory' => $drug_regulatory
+        ]);
     }
 
-    // Menyimpan data obat baru
     public function store_drug_data_data(Request $request)
     {
         try {
             $drug_data = new Drug;
 
             $drug_data_validation = $request->validate([
-                'content' => 'required|unique:drug_data',
-                'indication' => 'required',
-                'reaction' => 'required',
-                'classification' => 'required',
-                'warning' => 'required',
-                'contraindication' => 'required',
+                'drug_name' => 'required',
+                'contents' => 'required',
+                'indications' => 'required',
                 'dosage' => 'required',
-                'interaction' => 'required',
-                'regulation' => 'required',
-                'drug_category' => 'required',
+                'contraindication' => 'required',
+                'special_precautions' => 'required',
+                'drug_interaction' => 'required',
+                'adverse_reactions' => 'required',
+                'atc_classification' => 'required',
+                'presentation_id' => 'required',
+                'class_id' => 'required',
+                'regulatory_id' => 'required',
             ]);
 
-            $drug_data->content = $drug_data_validation['content'];
-            $drug_data->indication = $drug_data_validation['indication'];
-            $drug_data->reaction = $drug_data_validation['reaction'];
-            $drug_data->classification = $drug_data_validation['classification'];
-            $drug_data->warning = $drug_data_validation['warning'];
-            $drug_data->contraindication = $drug_data_validation['contraindication'];
+            $drug_data->drug_name = $drug_data_validation['drug_name'];
+
+            $drug_data->contents = $drug_data_validation['contents'];
+
+            $drug_data->indications = $drug_data_validation['indications'];
+
             $drug_data->dosage = $drug_data_validation['dosage'];
-            $drug_data->interaction = $drug_data_validation['interaction'];
-            $drug_data->regulation = $drug_data_validation['regulation'];
-            $drug_data->drug_category = $drug_data_validation['drug_category'];
+
+            $drug_data->contraindication = $drug_data_validation['contraindication'];
+
+            $drug_data->special_precautions = $drug_data_validation['special_precautions'];
+
+            $drug_data->drug_interaction = $drug_data_validation['drug_interaction'];
+
+            $drug_data->adverse_reactions = $drug_data_validation['adverse_reactions'];
+
+            $drug_data->atc_classification = $drug_data_validation['atc_classification'];
+
+            $drug_data->presentation_id = $drug_data_validation['presentation_id'];
+
+            $drug_data->class_id = $drug_data_validation['class_id'];
+
+            $drug_data->regulatory_id = $drug_data_validation['regulatory_id'];
+
             $drug_data->save();
 
-            Session::flash('success-to-create-data', 'Data Obat' . $drug_data_validation['form'] . ' Berhasil Dibuat');
+            Session::flash('success', 'Data Obat' . $drug_data->drug_name . ' Berhasil Dibuat');
 
-            return redirect(url('/drugs/create-drug=data'));
+            return redirect(url('/drugs/create-drug-data'));
         } catch (\Throwable $err) {
-            dd($err);
+            Session::flash('error', $err->getMessage());
+            return back();
         }
     }
 
-    public function store_drug_presentation_data(Request $request)
+    public function show_edit_data_form(Request $request)
     {
-        
+        $drug_presentation = DrugPresentation::orderBy('form')->get();
+        $drug_class = DrugClass::orderBy('class_name')->get();
+        $drug_regulatory = DrugRegulatory::orderBy('regulatory_name')->get();
+
+        $drug_data = Drug::with(['drug_class', 'drug_presentation', 'drug_regulatory'])->findOrFail($request->drug_id);
+        return view('Admin.Drugs.edit-data', [
+            'drug_data' => $drug_data,
+            'drug_presentation' => $drug_presentation,
+            'drug_class' => $drug_class,
+            'drug_regulatory' => $drug_regulatory
+        ]);
     }
 
-    // Menampilkan form untuk mengedit data obat
-    public function show_edit_data_form($data_id)
-    {
-        $drug_data = DrugData::findOrFail($data_id);
-        return view('Admin.Drugs.edit-data', compact('drug_data'));
-    }
 
-    // Memperbarui data obat yang ada
     public function update_drug_data_data(Request $request, $data_id)
     {
-        $validatedData = $request->validate([
-            'content' => 'required',
-            'indication' => 'required',
-            'reaction' => 'required',
-            'classification' => 'required',
-            'warning' => 'required',
-            'contraindication' => 'required',
-            'dosage' => 'required',
-            'interaction' => 'required',
-            'regulation' => 'required',
-            'drug_category' => 'required',
-        ]);
+        try {
+            $drug_data_validation = $request->validate([
+                'drug_name' => 'required',
+                'contents' => 'required',
+                'indications' => 'required',
+                'dosage' => 'required',
+                'contraindication' => 'required',
+                'special_precautions' => 'required',
+                'drug_interaction' => 'required',
+                'adverse_reactions' => 'required',
+                'atc_classification' => 'required',
+                'presentation_id' => 'required',
+                'class_id' => 'required',
+                'regulatory_id' => 'required',
+            ]);
 
-        $drug_data = Drug::findOrFail($data_id);
-        $drug_data->update($validatedData);
+            $drug_data = Drug::findOrFail($data_id);
+            $drug_data->update($drug_data_validation);
 
-        Session::flash('success-to-update-drug-data', 'Data Obat ' . $validatedData['form'] . ' Berhasil Diperbaharui');
+            Session::flash('success-to-update-drug-data', 'Data Obat ' . $drug_data->drug_name . ' Berhasil Diperbaharui');
 
-        return redirect()->route('drugs.index');
+            return redirect(url('/drug/data'));
+        } catch (\Throwable $err) {
+
+            Session::flash('error', $err->getMessage());
+            return back();
+        }
     }
 
-    // Menghapus data obat
-    public function destroy_data($data_id)
+    public function destroy_drug_data(Request $request)
     {
-        $drug_data = Drug::findOrFail($data_id);
-        $drug_data->delete();
 
-        Session::flash('success-to-delete-drug-data', 'Data Data Obat ' . $drug_data->form . ' Berhasil Dihapus');
+        try {
+            $drug_data = Drug::findOrFail($request->drug_id);
+            $drug_data->delete();
 
-        return redirect()->route('drugs.index');
+            Session::flash('success', 'Data Data Obat ' . $drug_data->drug_name . ' Berhasil Dihapus');
+
+            return redirect(url('/drug/data'));
+        } catch (\Throwable $err) {
+            Session::flash('error', $err->getMessage());
+            return back();
+        }
     }
 }

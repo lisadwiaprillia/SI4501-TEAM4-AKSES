@@ -35,11 +35,20 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::get('/konsultasikan-sekarang', function () {
         return view('Citizen.Home.realtime-chatting');
     });
+    Route::get('/konsultasikan-sekarang', function () {
+        return view('Citizen.Home.realtime-chatting');
+    });
 
     Route::get('/cari-obat', function () {
         return view('Citizen.Home.cari-obat');
     });
+    Route::get('/cari-obat', function () {
+        return view('Citizen.Home.cari-obat');
+    });
 
+    Route::get('/education-page', function () {
+        return view('Citizen.Home.education-page');
+    });
     Route::get('/education-page', function () {
         return view('Citizen.Home.education-page');
     });
@@ -77,16 +86,27 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::get('/drug/data', [DataController::class,  'show_drug_data']);
 
-    Route::get('/drug/data/{data_id}', [DataController::class, 'show_detail_data']);
+    Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
 
-    Route::get('/drugs/create-drug=data', [DataController::class, 'show_create_data_form']);
+    Route::get('/drugs/create-drug-data', [DataController::class, 'show_create_data_form']);
 
-    Route::post('/drugs/create-drug=data', [DataController::class, 'store_drug_data_data']);
+    Route::post('/drugs/create-drug-data', [DataController::class, 'store_drug_data_data']);
 
-    Route::get('/drugs/{data_id}/edit-data', [DataController::class, 'show_edit_data_form']);
-    Route::put('/drugs/{data_id}/update-data', [DataController::class, 'update_drug_data_data']);
 
-    Route::delete('/drugs/{data_id}/delete', [DataController::class, 'destroy_data0_data']);
+    Route::get('/drugs/{drug_id}/edit-data', [DataController::class, 'show_edit_data_form']);
+    Route::patch('/drugs/{drug_id}/update-data', [DataController::class, 'update_drug_data_data']);
+
+
+    Route::delete('/drugs/{drug_id}/delete', [DataController::class, 'destroy_drug_data']);
+
+
+
+    // * Drug Laporan Stock Obat
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+
+
+
 
     // * Drug Laporan Stock Obat
     Route::get('/health-staff', [StaffController::class, 'showStaff']);
@@ -94,12 +114,15 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 });
 
 
+
 // * Restricted Access admin
 
 Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
 
+    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
+
     //* Roles
-    Route::get('/roles', [RoleController::class, 'showRole']); //admin
+    Route::get('/roles', [RoleController::class, 'showRole']);
 
     Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
 
@@ -150,6 +173,7 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
 
     Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+
 
 
     Route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');

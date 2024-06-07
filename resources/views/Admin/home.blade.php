@@ -36,6 +36,20 @@
                                             Hubungi Kami
                                         </a>
                                     </div>
+
+                                    <h1>
+                                        Halo, <br>
+                                        <span>
+                                            {{ Session::get('user') }}
+                                        </span>
+                                    </h1>
+                                    <p>
+                                        when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                        more-or-less normal distribution of letters, as opposed to
+                                    </p>
+                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}" target="_new">
+                                        Hubungi Kami
+                                    </a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="img-box">
@@ -69,6 +83,20 @@
                                             Hubungi Kami
                                         </a>
                                     </div>
+
+                                    <h1>
+                                        Halo, <br>
+                                        <span>
+                                            {{ Session::get('user') }}
+                                        </span>
+                                    </h1>
+                                    <p>
+                                        when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                        more-or-less normal distribution of letters, as opposed to
+                                    </p>
+                                    <a href="">
+                                        Hubungi Kami
+                                    </a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="img-box">
@@ -102,6 +130,20 @@
                                             Hubungi Kami
                                         </a>
                                     </div>
+
+                                    <h1>
+                                        Halo, <br>
+                                        <span>
+                                            {{ Session::get('user') }}
+                                        </span>
+                                    </h1>
+                                    <p>
+                                        when looking at its layout. The point of using Lorem Ipsum is that it has a
+                                        more-or-less normal distribution of letters, as opposed to
+                                    </p>
+                                    <a href="">
+                                        Hubungi Kami
+                                    </a>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="img-box">
@@ -187,5 +229,10 @@
         </div>
     @endif
 
+
+
+    </section>
+    <!-- end slider section -->
+    </div>
 
 @endsection
