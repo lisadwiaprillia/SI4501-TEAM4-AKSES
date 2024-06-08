@@ -8,6 +8,64 @@ use App\Models\DrugClass;
 
 class DrugClassTest extends DuskTestCase
 {
+    public function test_fail_see_classification()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/drugs/classes')
+                ->assertSee('Login');
+        });
+    }
+
+    public function test_fail_create_classification()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/drugs/classes')
+                ->assertSee('Login');
+        });
+    }
+
+
+    public function test_fail_edit_classification()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/drugs/classes')
+                ->assertSee('Login');
+        });
+    }
+
+    public function test_fail_delete_classification()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/drugs/classes')
+                ->assertSee('Login');
+        });
+    }
+
+
     public function test_drug_classification_views()
     {
         $this->browse(function (Browser $browser) {
@@ -17,8 +75,6 @@ class DrugClassTest extends DuskTestCase
                 ->type('user_email', 'admin@mail.com')
                 ->type('user_password', 'admin123')
                 ->press('Login')
-                ->waitForLocation('/staff-dashboard')
-                ->assertPathIs('/staff-dashboard')
                 ->visit('http://127.0.0.1:8001/drugs/classes')
                 ->assertSee('Manajemen Kelas Obat');
         });

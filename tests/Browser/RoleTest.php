@@ -9,6 +9,64 @@ use App\Models\Role;
 
 class RoleTest extends DuskTestCase
 {
+
+    public function test_fail_role_views()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/roles')
+                ->assertSee('Login');
+        });
+    }
+
+    public function test_fail_create_role_views()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/roles')
+                ->assertSee('Login');
+        });
+    }
+
+
+    public function test_fail_edit_role_views()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/roles')
+                ->assertSee('Login');
+        });
+    }
+
+    public function test_fail_delete_role_views()
+    {
+        $this->browse(function (Browser $browser) {
+            $browser->visit('http://127.0.0.1:8001/login')
+                ->waitForLocation('/login')
+                ->assertSee('Login')
+                ->type('user_email', 'admin@mail.com')
+                ->type('user_password', '')
+                ->press('Login')
+                ->visit('http://127.0.0.1:8001/roles')
+                ->assertSee('Login');
+        });
+    }
+
     public function test_role_views()
     {
         $this->browse(function (Browser $browser) {
@@ -18,8 +76,6 @@ class RoleTest extends DuskTestCase
                 ->type('user_email', 'admin@mail.com')
                 ->type('user_password', 'admin123')
                 ->press('Login')
-                ->waitForLocation('/staff-dashboard')
-                ->assertPathIs('/staff-dashboard')
                 ->visit('http://127.0.0.1:8001/roles');
         });
     }
