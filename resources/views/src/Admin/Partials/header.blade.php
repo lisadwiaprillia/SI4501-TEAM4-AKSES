@@ -40,9 +40,27 @@
                                     href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/admin-dashboard') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>
+                                <a class="nav-link @yield('education') mr-5" href="{{ url('/education') }}">Halaman
+                                    Edukasi</a>
                             </li>
                         </ul>
+
+                        <div class="dropdown show mr-5">
+                            <a class="dropdown-toggle shadow-none" href="#" role="button" id="dropdownMenuLink"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
+                                Menu Obat
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/drug/presentations') }}">Data
+                                    Sediaan Obat</a>
+                                <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data
+                                    Klasifikasi
+                                    Obat</a>
+                                <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
+                                <a class="dropdown-item @yield('drug-data')" href="{{ url('/drug/data') }}">Data
+                                    Obat</a>
+                            </div>
+                        </div>
 
                         @if (Session::get('isAdmin') === true)
                             <div class="dropdown show nav-link mr-5">
@@ -89,19 +107,31 @@
                                 </div>
                             </div>
 
-                            <div class="dropdown show">
-                                <a class="dropdown-toggle shadow-none" href="#" role="button"
+                            <div class="dropdown show nav-link mr-5">
+                                <a class="dropdown-toggle shadow-none nav-link" href="#" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
                                     aria-expanded="false" style="color: black">
                                     Data Edukasi
                                 </a>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                                    <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/list/categories') }}">Data
-                                        Kategori Edukasi</a>
-                                </div>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item @yield('education')"
+                                            href="{{ url('/education') }}">Data
+                                            Edukasi</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item @yield('category')"
+                                            href="{{ url('/categories') }}">Data
+                                            Kategori Edukasi</a>
+                                    </li>
+                                </ul>
                             </div>
                     </div>
                     @endif
+
+
 
                     <div class="quote_btn-container">
                         <a href="{{ url('/logout') }}">

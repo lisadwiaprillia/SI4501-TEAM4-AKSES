@@ -36,6 +36,7 @@ class AuthController extends Controller
             $request->session()->put('isAuthorize', false);
             return back()->with('login', 'Proses Login Gagal');
         }
+
         $request->session()->put('isAuthorize', true);
         $request->session()->put("user", $user[0]->name);
         $request->session()->put('user_id', $user[0]->user_id);

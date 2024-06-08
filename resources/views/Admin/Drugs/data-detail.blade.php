@@ -1,4 +1,4 @@
-@extends('src.Admin.Template.main-template')
+@extends(Session::has('isAuthorize') ? 'src.Admin.Template.main-template' : 'src.Template.main-template')
 @section('drug-data', 'active')
 @section('title', 'Detail Data Obat')
 @section('content')
@@ -61,11 +61,11 @@
                             </tr>
                             <tr>
                                 <th scope="row">Dibuat Pada</th>
-                                <td>{{ $drug_data->created_at }}</td>
+                                <td>{{ $drug_data->created_at->format('d M Y') }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">DiUpdate Pada</th>
-                                <td>{{ $drug_data->updated_at }}</td>
+                                <th scope="row">Di update Pada</th>
+                                <td>{{ $drug_data->updated_at->format('d M Y') }}</td>
                             </tr>
                         </tbody>
                     </table>

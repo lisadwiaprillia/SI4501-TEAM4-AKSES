@@ -12,7 +12,7 @@
     <style>
         .dropdown:hover>.dropdown-menu {
             display: block;
-    }
+        }
     </style>
 
     {{-- Bootstrap css --}}
@@ -55,7 +55,10 @@
 
     @include('src.Admin.Partials.footer')
 
+
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <!-- jQery -->
@@ -78,6 +81,8 @@
     </script>
     <!-- Font Awesome Kit -->
     <script src="https://kit.fontawesome.com/4b46550681.js" crossorigin="anonymous"></script>
+
+    @yield('script')
 </body>
 
 </html>

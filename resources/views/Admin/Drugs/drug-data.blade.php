@@ -1,4 +1,4 @@
-@extends('src.Admin.Template.main-template')
+@extends(Session::has('isAuthorize') ? 'src.Admin.Template.main-template' : 'src.Template.main-template')
 @section('drug-data', 'active')
 @section('title', 'Data Obat')
 @section('content')
@@ -34,9 +34,18 @@
                             </div>
                         @endif
 
+                        @if (Session::has('isAuthorize'))
+                            <h3>Manajemen Data Obat</h3>
+                        @else
+                            <h3>Data Obat</h3>
+                        @endif
+                        @if (Session::has('isAuthorize'))
+                            <a href="{{ url('/drugs/create-drug-data') }}"
+                                class="btn btn-primary ml-3 medicine-add-btn">Buat
+                                Data Obat</a>
+                        @endif
 
-                        <a href="{{ url('/drugs/create-drug-data') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
-                            Data Obat</a>
+
                         <div class="container mt-4">
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -61,21 +70,29 @@
                                                 <td>{{ $drug_data->indications }}</td>
                                                 <td>{{ $drug_data->dosage }}</td>
                                                 <td>{{ $drug_data->drug_class->class_name }}</td>
-                                                <td>
-                                                    <a href="{{ url('/drug/data/' . $drug_data->drug_id) }}"
-                                                        class="btn btn-primary back-btn mr-2">Detail</a>
+                                                @if (Session::has('isAuthorize'))
+                                                    <td>
+                                                        <a href="{{ url('/drug/data/' . $drug_data->drug_id) }}"
+                                                            class="btn btn-primary back-btn mr-2">Detail</a>
 
-                                                    <a href="{{ url('/drugs/' . $drug_data->drug_id . '/edit-data') }}"
-                                                        class="btn btn-success mr-2">Edit</a>
+                                                        <a href="{{ url('/drugs/' . $drug_data->drug_id . '/edit-data') }}"
+                                                            class="btn btn-success mr-2">Edit</a>
 
-                                                    <form class="d-inline"
-                                                        action="{{ url('/drugs/' . $drug_data->drug_id . '/delete') }}"
-                                                        method="POST">
-                                                        @csrf
-                                                        @method('DELETE')
-                                                        <button class="btn btn-danger mr-2" type="submit">Hapus</button>
-                                                    </form>
-                                                </td>
+                                                        <form class="d-inline"
+                                                            action="{{ url('/drugs/' . $drug_data->drug_id . '/delete') }}"
+                                                            method="POST">
+                                                            @csrf
+                                                            @method('DELETE')
+                                                            <button class="btn btn-danger mr-2"
+                                                                type="submit">Hapus</button>
+                                                        </form>
+                                                    </td>
+                                                @else
+                                                    <td>
+                                                        <a href="{{ url('/drug/data/' . $drug_data->drug_id) }}"
+                                                            class="btn btn-primary back-btn mr-2">Detail</a>
+                                                    </td>
+                                                @endif
                                             </tr>
                                         @endforeach
                                     </tbody>
