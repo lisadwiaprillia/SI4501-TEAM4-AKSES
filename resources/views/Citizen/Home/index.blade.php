@@ -217,7 +217,7 @@
                                         onmouseover="this.style.backgroundColor='white'"
                                         onmouseout="this.style.backgroundColor='rgb(1, 159, 144)'">
                                         <div class="card-body">
-                                            <a href="" style="color: white; font-weight: bold;"
+                                            <a href="{{ url('/education-page') }}" style="color: white; font-weight: bold;"
                                                 onmouseover="this.style.color='rgb(1, 159, 144)'"
                                                 onmouseout="this.style.color='rgb(255, 255, 255)'">Baca edukasi lainnya</a>
                                         </div>

@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Citizen\CitizenController;
+use App\Http\Controllers\Citizen\CommentController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
@@ -35,23 +36,18 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::get('/konsultasikan-sekarang', function () {
         return view('Citizen.Home.realtime-chatting');
     });
-    Route::get('/konsultasikan-sekarang', function () {
-        return view('Citizen.Home.realtime-chatting');
-    });
 
-    Route::get('/cari-obat', function () {
-        return view('Citizen.Home.cari-obat');
-    });
-    Route::get('/cari-obat', function () {
-        return view('Citizen.Home.cari-obat');
-    });
+    Route::get('/cari-obat', [CitizenController::class, 'cariObat']);
 
-    Route::get('/education-page', function () {
-        return view('Citizen.Home.education-page');
-    });
-    Route::get('/education-page', function () {
-        return view('Citizen.Home.education-page');
-    });
+    Route::get('/education-page', [CitizenController::class, 'educationPage'])->name('education-page');
+    
+    // Route::post('/education-page', [CitizenController::class, 'comment'])->name('comment.store');
+
+    Route::post('/comment', [CommentController::class, 'store'])->name('comment.store');
+    
+    Route::patch('/comment/{comment}', [CommentController::class, 'update'])->name('comment.update');
+    
+    Route::delete('/comment/{comment}', [CommentController::class, 'destroy'])->name('comment.destroy');
 
     Route::get('/health-institution/verification', [InstitutionController::class, 'showVerificationInfo']);
 
