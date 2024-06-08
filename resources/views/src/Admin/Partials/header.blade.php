@@ -21,7 +21,8 @@
     <div class="header_bottom">
         <div class="container-fluid">
             <nav class="navbar navbar-expand-lg custom_nav-container ">
-                <a class="navbar-brand" href="">
+                <a class="navbar-brand"
+                    href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/admin-dashboard') }}">
                     <img src="{{ asset('img/logo_akses.png') }}" alt="logo akses">
                 </a>
 
@@ -35,31 +36,15 @@
                     <div class="d-flex mr-auto flex-column flex-lg-row align-items-center">
                         <ul class="navbar-nav ">
                             <li class="nav-item active">
-                                <a class="nav-link @yield('home')" href="{{ url('home') }}">Beranda</a>
+                                <a class="nav-link @yield('home')"
+                                    href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/admin-dashboard') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>
                             </li>
                         </ul>
-                        <div class="dropdown show nav-link mr-5">
-                            <a class="dropdown-toggle shadow-none nav-link" href="#" role="button"
-                                id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                                style="color: black">
-                                Data Institusi
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                            <li><a class="dropdown-item @yield('institution')" href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a></li>
-                                <li><a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
-                                </li>
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
-                                <li><a class="dropdown-item @yield('roles')" href="{{ url('/roles') }}">Data Role</a>
-                                </li>
-                            </ul>
-                        </div>
 
-                        <div class="dropdown show">
+                        <!-- <div class="dropdown show">
                             <a class="dropdown-toggle shadow-none" href="#" role="button" id="dropdownMenuLink"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: black">
                                 Data Obat
@@ -69,10 +54,67 @@
                                     Sediaan Obat</a>
                                 <a class="dropdown-item @yield('drug-classes')" href="{{ url('/drugs/classes') }}">Data Kelas
                                     Obat</a>
-                                <a class="dropdown-item @yield('drug-regulation')" href="{{ url('/list/regulatories') }}" >Data Regulasi Obat</a>
+                                <a class="dropdown-item @yield('drug-regulation')" href="{{ url('/list/regulatories') }}" >Data Regulasi Obat</a> -->
+
+                        @if (Session::get('isAdmin') === true)
+                            <div class="dropdown show nav-link mr-5">
+                                <a class="dropdown-toggle shadow-none nav-link" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" style="color: black">
+                                    Data Institusi
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <li>
+                                        <a class="dropdown-item @yield('institution')"
+                                            href="{{ url('/health-institution') }}">Data Institusi Kesehatan</a>
+                                    </li>
+                                    <li>
+                                        <a class="dropdown-item @yield('institution')"
+                                            href="{{ url('/verificaiton-request') }}">Data
+                                            Permohonan Verifikasi</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item @yield('roles')" href="{{ url('/roles') }}">Data
+                                            Role</a>
+                                    </li>
+                                </ul>
                             </div>
-                        </div>
+
+                            <div class="dropdown show mr-5">
+                                <a class="dropdown-toggle shadow-none" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" style="color: black">
+                                    Menu Obat
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item @yield('drug-presentation')"
+                                        href="{{ url('/drug/presentations') }}">Data
+                                        Sediaan Obat</a>
+                                    <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data
+                                        Klasifikasi
+                                        Obat</a>
+                                    <a class="dropdown-item @yield('drug-regulation')" href="{{ url('/list/regulatories') }}">Data Regulasi Obat</a>
+                                    <a class="dropdown-item @yield('drug-data')" href="{{ url('/drug/data') }}">Data
+                                        Obat</a>
+                                </div>
+                            </div>
+
+                            <div class="dropdown show">
+                                <a class="dropdown-toggle shadow-none" href="#" role="button"
+                                    id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
+                                    aria-expanded="false" style="color: black">
+                                    Data Edukasi
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                    <a class="dropdown-item @yield('drug-presentation')" href="{{ url('/list/categories') }}">Data
+                                        Kategori Edukasi</a>
+                                </div>
+                            </div>
                     </div>
+                    @endif
+
                     <div class="quote_btn-container">
                         <a href="{{ url('/logout') }}">
                             <span>
