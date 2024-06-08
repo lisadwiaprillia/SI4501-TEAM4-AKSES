@@ -18,7 +18,7 @@
                 <div class="card-header text-capitalize">
                     formulir Pembuatan Sediaan Obat
                 </div>
-                <form action="{{ url('/drugs/create-drug=presentation') }}" method="POST" class="px-5 py-5">
+                <form action="{{ url('/drugs/create-drug-presentation') }}" method="POST" class="px-5 py-5">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Sediaan / Form</label>
@@ -31,8 +31,8 @@
                             name="packaging_and_price" id="exampleFormControlTextarea1" required>
                     </div>
                     <a href="{{ url('/drug/presentations') }}" class="btn btn-primary mt-3 mr-3 back-btn">Lihat
-                        Presentasi Obat</a>
-                    <button type="submit" name="submit" class="btn btn-primary submit-button mt-3">Buat Presentasi
+                        Sediaan Obat</a>
+                    <button type="submit" name="submit" class="btn btn-primary submit-button mt-3">Buat Sediaan
                         Obat</button>
                 </form>
             </div>

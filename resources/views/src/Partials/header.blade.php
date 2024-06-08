@@ -47,24 +47,36 @@
                                 style="background-color:#019F90; border: none;">
                                 Institusi Kesehatan
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-
-                                <a class="dropdown-item @yield('institution')" href="{{ route('institution') }}">Pengajuan
-                                    Verifikasi Institusi Kesehatan</a>
-                                <a class="dropdown-item @yield('check')"
-                                    href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi Institusi
-                                    Kesehatan</a>
-                                <a class="dropdown-item @yield('employee-request')"
-                                    href="{{ url('employee-request') }}">Pengajuan Verifikasi Tenaga Kesehatan</a>
-                                <a class="dropdown-item @yield('employee-check')"
-                                    href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi Tenaga
-                                    kesehatan</a>
-                                    
-                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                                <li>
+                                    <a class="dropdown-item @yield('institution')"
+                                        href="{{ route('institution') }}">Pengajuan
+                                        Verifikasi Institusi Kesehatan</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item @yield('check')"
+                                        href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi
+                                        Institusi
+                                        Kesehatan</a>
+                                </li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li>
+                                    <a class="dropdown-item @yield('employee-request')"
+                                        href="{{ url('employee-request') }}">Pengajuan Verifikasi Tenaga Kesehatan</a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item @yield('employee-check')"
+                                        href="{{ url('/health-institution/check-status') }}">Cek Status Verifikasi
+                                        Tenaga
+                                        kesehatan</a>
+                                </li>
+                            </ul>
                         </div>
                     </div>
                     <div class="quote_btn-container">
-                        <a href="login">
+                        <a href="{{ url('/login') }}">
                             <span>
                                 Login
                             </span>

@@ -1,5 +1,5 @@
 <!-- Import Template -->
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
 
 <!-- Set Title Halaman -->
 @section('title', 'Akses')

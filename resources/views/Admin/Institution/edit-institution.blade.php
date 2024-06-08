@@ -1,5 +1,5 @@
 <!-- Import Template -->
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
 
 <!-- Set Title Halaman -->
 @section('title', 'Akses')
@@ -61,8 +61,9 @@
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Bukti Kepemilikan Institusi</label>
-                            <input type="file" value="{{ asset('storage/' . $institution->institution_evidence) }}" class="form-control"
-                                id="exampleInputEmail1" aria-describedby="emailHelp" name="institution_evidence">
+                            <input type="file" value="{{ asset('storage/' . $institution->institution_evidence) }}"
+                                class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                                name="institution_evidence">
                         </div>
                         <div class="form-group">
                             <label for="exampleInputEmail1">Status Institusi</label>

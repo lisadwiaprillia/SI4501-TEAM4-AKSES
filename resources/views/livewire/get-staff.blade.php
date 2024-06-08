@@ -1,5 +1,3 @@
-
-
 <div>
     <div>
         <label for="user_status">Filter Berdasarkan Status</label>
@@ -8,7 +6,7 @@
             <option value="Pending">Pending</option>
             <option value="Ditolak">Ditolak</option>
         </select>
-    
+
         <div class="table-responsive mt-3">
             <table class="table table-striped">
                 <thead>
@@ -32,10 +30,9 @@
                                     class="btn btn-primary back-btn mr-2">Detail</a>
                                 <a href="{{ url('/health-staff/' . $staff->user_id . '{user_id}/edit') }}"
                                     class="btn btn-success mr-2">Edit</a>
-    
+
                                 <form class="d-inline"
-                                    action="{{ url('/health-staff/' . $staff->user_id . '/delete') }}"
-                                    method="POST">
+                                    action="{{ url('/health-staff/' . $staff->user_id . '/delete') }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger mr-2" type="submit">Hapus</button>
