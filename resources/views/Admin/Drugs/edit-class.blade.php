@@ -16,6 +16,7 @@
             <div class="card">
                 <div class="card-header text-capitalize">
                     formulir Perubahan Data Kelas Obat
+
                 </div>
                 <form action="{{ url('/drugs/class/' . $drug_class->class_id . '/update-form') }}" method="POST" class="px-5 py-5"
                     enctype="multipart/form-data">
