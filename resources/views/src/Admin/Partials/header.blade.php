@@ -108,7 +108,7 @@
                                     <a class="dropdown-item @yield('drug-classes')" href={{ url('/drugs/classes') }}>Data
                                         Klasifikasi
                                         Obat</a>
-                                    <a class="dropdown-item @yield('drug-regulation')" href="">Data Regulasi Obat</a>
+                                    <a class="dropdown-item @yield('drug-regulation')" href="{{ url('/list/regulatories') }}">Data Regulasi Obat</a>
                                     <a class="dropdown-item @yield('drug-data')" href="{{ url('/drug/data') }}">Data
                                         Obat</a>
                                 </div>

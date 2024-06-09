@@ -7,6 +7,7 @@ use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
 use App\Http\Controllers\Drugs\PresentationController;
+use App\Http\Controllers\Drugs\RegulatoryController;
 use App\Http\Controllers\Staff\StaffController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
@@ -20,7 +21,12 @@ use App\Http\Controllers\Post\CategoryController;
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
 
+
+
+//use App\Http\Controllers\MedicalStaff\AuthController;
+
     Route::get('/register', [AuthController::class, 'showRegisterForm']); //guest
+
 
     Route::post('/register', [AuthController::class, 'register']); //guest
 
@@ -151,12 +157,22 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     Route::delete('/education/delete/{post_id}', [EduCationController::class, 'delete_post']);
 
+
+    //CRUD Drug Regulatory Classification
+    Route::get('/add/regulatories', [RegulatoryController::class, 'showRegulatoryForm'])->name('Admin.Drugs.showRegulatory');
+    Route::post('/add/regulatories', [RegulatoryController::class, 'storeRegulatoryData']);
+
+    Route::get('list/regulatories', [RegulatoryController::class, 'listRegulatory'])->name('Admin.Drugs.listRegulatory');
+
+    Route::get('/edit/regulatories/{id}', [RegulatoryController::class, 'editRegulatoryForm'])->name('Admin.Drugs.editRegulatory');
+    Route::put('/update/regulatories/{id}', [RegulatoryController::class, 'updateRegulatoryData'])->name('Admin.Drugs.updateRegulatoryData');
+
+    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory');
+
     // End of Educational Data Section
 
 
 });
-
-
 
 
 // * Restricted Access admin

@@ -24,6 +24,7 @@
                                 </button>
                             </div>
                         @endif
+                        
                         <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Sediaan obat</p>
                         <a href="{{ url('/drugs/create-drug-presentation') }}"
                             class="btn btn-primary ml-3 medicine-add-btn">Buat

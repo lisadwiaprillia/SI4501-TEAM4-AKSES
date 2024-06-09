@@ -11,13 +11,21 @@ class DrugRegulatory extends Model
     use HasFactory;
 
     protected $table = 'drug_regulatories';
-
-    protected $fillable = ['regulatory_name, regulatory_desc'];
-
+    
     protected $primaryKey = 'regulatory_id';
 
-    protected $guarded = 'regulatory_id';
+    protected $fillable = [
+        'regulatory_name',
+        'regulatory_desc'
+    ];
 
+    protected $guarded = ['regulatory_id'];
+
+    public function post()
+    {
+        return $this->hasMany(Drug::class);
+    }
+    
     public function drug(): HasMany
     {
         return $this->hasMany(Drug::class, 'regulatory_id', 'regulatory_id');
