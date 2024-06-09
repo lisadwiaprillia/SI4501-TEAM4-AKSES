@@ -32,6 +32,4 @@
             }
         });
     </script>
-
-
 @endsection

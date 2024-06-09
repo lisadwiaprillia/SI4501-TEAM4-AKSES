@@ -216,7 +216,6 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     // End Of categories section
 
-
     // Start Of Insitution Data
 
     Route::get('/verificaiton-request', [InstitutionController::class, 'showVerificationData']);

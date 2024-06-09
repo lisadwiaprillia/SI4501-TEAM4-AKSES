@@ -3,11 +3,12 @@
 @section('roles', 'active')
 @section('title', 'Roles')
 @section('content')
+
+
     <main>
         <div class="container mt-5">
             <main>
                 <div class="container">
-
                     @if (Session::has('success-to-delete-role'))
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                             {{ Session::get('success-to-delete-role') }}
