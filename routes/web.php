@@ -118,19 +118,20 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     // Start Of Drug Presentation
 
-    Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation']);
+    Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation'])->name('drug-index');
+    Route::post('/drug/presentations', [PresentationController::class,  'show_drug_presentation'])->name('drug-index');
 
     Route::get('/drug/presentations/{presentation_id}', [PresentationController::class, 'show_detail_presentation']);
 
     Route::get('/drugs/create-drug-presentation', [PresentationController::class, 'show_create_presentation_form']);
 
-    Route::post('/drugs/create-drug-presentation', [PresentationController::class, 'store_drug_presentation_data']);
+    Route::post('/drugs/store/create-drug-presentation', [PresentationController::class, 'store_drug_presentation_data'])->name('presentation.create');
 
     Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController::class, 'show_edit_presentation_form']);
 
     Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
-    Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation_data']);
+    Route::delete('/drugs/delete/{presentation_id}', [PresentationController::class, 'destroy_presentation_data'])->name('presentation.delete');
 
     // End of Drug Presentation Section
 
@@ -182,15 +183,15 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     //! Categories of Post
 
-    Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
+    // Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
 
-    Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
-    Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
+    // Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
+    // Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
 
-    Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
-    Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
+    // Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
+    // Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
 
-    Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+    // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
 
     //! End Of Categories of Post
 
@@ -200,13 +201,14 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::get('/categories/{category_id}', [CategoryController::class, 'show_detail_category']);
 
-    Route::get('/categories/create', [CategoryController::class, 'show_category_form']);
-    Route::post('/categories/create', [CategoryController::class, 'store_category_data']);
+    Route::get('/create-form-category', [CategoryController::class, 'show_category_form'])->name('category.create_form');
+
+    Route::post('/store-category-data', [CategoryController::class, 'store_category_data'])->name('category.post_form_data');
 
     Route::get('/categories/edit/{category_id}', [CategoryController::class,  'show_edit_category_form']);
-    Route::patch('/categories/edit/{category_id}', [CategoryController::class, 'update_category']);
+    Route::patch('/categories/update/{category_id}', [CategoryController::class, 'update_category'])->name('category.update');
 
-    Route::delete('categories/{category_id}/delete', [CategoryController::class, 'delete_category']);
+    Route::delete('categories/delete/{category_id}', [CategoryController::class, 'delete_category'])->name('category.delete');
 
     // End Of categories section
 

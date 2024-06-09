@@ -20,7 +20,7 @@ class DrugPresentation extends Model
     protected $guarded = 'presentation_id';
 
 
-    public function drug() 
+    public function drug()
     {
         return $this->hasMany(Drug::class, 'presentation_id', 'presentation_id');
     }

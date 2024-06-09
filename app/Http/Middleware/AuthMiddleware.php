@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Controllers\Staff\DashboardController;
+use Illuminate\Support\Facades\Session;
 
 class AuthMiddleware
 {
@@ -16,8 +17,7 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if ($request->session()->exists('user')) {
-            // dd($request->session());
+        if (Session::get('isAuthorize') === true) {
             return $next($request);
         } else {
             return redirect(url('/'));

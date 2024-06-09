@@ -34,6 +34,7 @@ class Drug extends Model
     {
         return $this->belongsTo(DrugClass::class, 'class_id', 'class_id');
     }
+
     public function drug_regulatory()
     {
         return $this->belongsTo(DrugRegulatory::class, 'regulatory_id', 'regulatory_id');
@@ -43,7 +44,4 @@ class Drug extends Model
     {
         return $this->belongsTo(DrugPresentation::class, 'presentation_id', 'presentation_id');
     }
-
 }
-
-

@@ -27,7 +27,7 @@
                         </div>
                     @endif
                     <p class="mt-5 ml-3 fw-bold fs-3">Manajemen Kategori Edukasi</p>
-                    <a href="{{ url('/categories/create') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
+                    <a href="{{ route('category.create_form') }}" class="btn btn-primary ml-3 medicine-add-btn">Buat
                         Kategori Edukasi</a>
                     <div class="container mt-4">
                         <div class="table-responsive">
@@ -53,7 +53,7 @@
                                                     class="btn btn-success mr-2">Edit</a>
 
                                                 <form class="d-inline"
-                                                    action="{{ url('categories/' . $category->category_id . '/delete') }}"
+                                                    action="{{ route('category.delete', $category->category_id) }}"
                                                     method="POST">
                                                     @csrf
                                                     @method('DELETE')

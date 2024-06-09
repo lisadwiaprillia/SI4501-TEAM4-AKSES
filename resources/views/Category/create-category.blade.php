@@ -27,7 +27,7 @@
                 <div class="card-header text-capitalize">
                     formulir Pembuatan Kategori Baru
                 </div>
-                <form action="{{ url('/categories/create') }}" method="POST" class="px-5 py-5">
+                <form action="{{ route('category.post_form_data') }}" method="POST" class="px-5 py-5">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Kategori</label>

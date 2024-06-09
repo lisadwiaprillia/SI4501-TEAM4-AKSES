@@ -19,7 +19,7 @@
                 <div class="card-header text-capitalize">
                     formulir Perubahan Kategori
                 </div>
-                <form action="{{ url('/categories/edit/' . $category->category_id) }}" method="POST" class="px-5 py-5">
+                <form action="{{ route('category.update', $category->category_id) }}" method="POST" class="px-5 py-5">
                     @csrf
                     @method('PATCH')
                     <div class="form-group">

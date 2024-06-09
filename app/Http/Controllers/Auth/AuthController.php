@@ -41,8 +41,8 @@ class AuthController extends Controller
         $request->session()->put("user", $user->name);
         $request->session()->put('user_id', $user->user_id);
 
-        Session::put('isApoteker', $user->role->role_name === 'apoteker' ? true : false);
-        Session::put('isAdmin', $user->role->role_name === 'admin' ? true : false);
+        Session::put('isApoteker', $user->role->role_name == 'apoteker' ? true : false);
+        Session::put('isAdmin', $user->role->role_name == 'admin' ? true : false);
 
         if (Session::get('isAdmin' === false)) {
             return redirect(url('/staff-dashboard'))->with('loginSuccess', 'Proses Login berhasil');

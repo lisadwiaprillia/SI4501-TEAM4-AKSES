@@ -24,7 +24,6 @@
                                 </button>
                             </div>
                         @endif
-
                         <p class="mt-5 ml-3 fw-bold fs-3 text-capitalize">manajemen Sediaan obat</p>
                         <a href="{{ url('/drugs/create-drug-presentation') }}"
                             class="btn btn-primary ml-3 medicine-add-btn">Buat
@@ -55,7 +54,7 @@
                                                         class="btn btn-success mr-2">Edit</a>
 
                                                     <form class="d-inline   "
-                                                        action="{{ url('/drugs/' . $drug_presentation->presentation_id . '/delete') }}"
+                                                        action="{{ route('presentation.delete', $drug_presentation->presentation_id) }}"
                                                         method="POST">
                                                         @csrf
                                                         @method('DELETE')

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Drugs;
 
 use App\Models\DrugPresentation;
-use App\Models\Drug;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -29,7 +28,7 @@ class PresentationController extends Controller
 
     public function show_create_presentation_form()
     {
-        $drugs = Drug::all()->sortBy('created_at');
+        $drugs = DrugPresentation::all()->sortBy('created_at');
         return view('Admin.Drugs.create-presentation', [
             'drugs' => $drugs
         ]);
@@ -38,6 +37,7 @@ class PresentationController extends Controller
     public function store_drug_presentation_data(Request $request)
     {
         try {
+
             $drug_presentations = new DrugPresentation;
 
             $drug_presentation_validation = $request->validate([
@@ -51,7 +51,7 @@ class PresentationController extends Controller
 
             Session::flash('success', 'Data Presentasi ' . $drug_presentation_validation['form'] . ' Berhasil Dibuat');
 
-            return redirect(url('/drugs/create-drug=presentation'));
+            return redirect(url('/drug/presentations'));
         } catch (\Throwable $err) {
             dd($err);
         }
@@ -80,9 +80,8 @@ class PresentationController extends Controller
     public function destroy_presentation_data(Request $request)
     {
         try {
-            $drug_presentation = DrugPresentation::find($request->presentation_id);
+            $drug_presentation = DrugPresentation::findOrFail($request->presentation_id);
             $drug_presentation->delete();
-
             Session::flash('success', 'Data Presentasi Obat ' . $drug_presentation->form . ' Berhasil Dihapus');
 
             return redirect(url('/drug/presentations'));
