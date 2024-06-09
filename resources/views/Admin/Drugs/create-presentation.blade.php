@@ -18,7 +18,7 @@
                 <div class="card-header text-capitalize">
                     formulir Pembuatan Sediaan Obat
                 </div>
-                <form action="{{ url('/drugs/create-drug-presentation') }}" method="POST" class="px-5 py-5">
+                <form action="{{ route('presentation.create') }}" method="POST" class="px-5 py-5">
                     @csrf
                     <div class="form-group">
                         <label for="exampleInputEmail1">Nama Sediaan / Form</label>

@@ -3,72 +3,72 @@
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/jquery-3.4.1.min.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036874514
+        "timestamp": 1717926350856
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/custom.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036874636
+        "timestamp": 1717926350971
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/bootstrap.js 6:0 Uncaught SyntaxError: Cannot use import statement outside a module",
         "source": "javascript",
-        "timestamp": 1717036874652
+        "timestamp": 1717926350980
     },
     {
         "level": "SEVERE",
         "message": "https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/jquery-nice-select\/1.1.0\/js\/jquery.nice-select.min.js 3:2814 Uncaught ReferenceError: jQuery is not defined",
         "source": "javascript",
-        "timestamp": 1717036874652
+        "timestamp": 1717926350980
     },
     {
         "level": "SEVERE",
         "message": "https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/OwlCarousel2\/2.3.4\/owl.carousel.min.js 5:21376 Uncaught TypeError: Cannot read properties of undefined (reading 'fn')",
         "source": "javascript",
-        "timestamp": 1717036874653
+        "timestamp": 1717926350980
     },
     {
         "level": "SEVERE",
         "message": "https:\/\/cdnjs.cloudflare.com\/ajax\/libs\/bootstrap-datepicker\/1.3.0\/js\/bootstrap-datepicker.js 24:15 Uncaught TypeError: $ is not a function",
         "source": "javascript",
-        "timestamp": 1717036874655
+        "timestamp": 1717926350981
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/jquery-3.4.1.min.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036876655
+        "timestamp": 1717926351876
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/custom.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036876777
+        "timestamp": 1717926351991
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/bootstrap.js 6:0 Uncaught SyntaxError: Cannot use import statement outside a module",
         "source": "javascript",
-        "timestamp": 1717036876780
+        "timestamp": 1717926352316
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/jquery-3.4.1.min.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036877184
+        "timestamp": 1717926352595
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/custom.js - Failed to load resource: the server responded with a status of 404 (Not Found)",
         "source": "network",
-        "timestamp": 1717036877304
+        "timestamp": 1717926352714
     },
     {
         "level": "SEVERE",
         "message": "http:\/\/127.0.0.1:8001\/js\/bootstrap.js 6:0 Uncaught SyntaxError: Cannot use import statement outside a module",
         "source": "javascript",
-        "timestamp": 1717036877318
+        "timestamp": 1717926352717
     }
 ]

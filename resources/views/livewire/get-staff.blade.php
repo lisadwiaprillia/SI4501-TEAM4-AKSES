@@ -28,6 +28,7 @@
                             <td>
                                 <a href="{{ url('/health-staff/' . $staff->user_id . '{user_id}/details') }}"
                                     class="btn btn-primary back-btn mr-2">Detail</a>
+
                                 <a href="{{ url('/health-staff/' . $staff->user_id . '{user_id}/edit') }}"
                                     class="btn btn-success mr-2">Edit</a>
 
@@ -37,6 +38,14 @@
                                     @method('DELETE')
                                     <button class="btn btn-danger mr-2" type="submit">Hapus</button>
                                 </form>
+                                @if ($staff->user_status === 'pending')
+                                    <form class="d-inline" action="{{ url('/health-staff/accept/' . $staff->user_id) }}"
+                                        method="POST">
+                                        @csrf
+                                        @method('PATCH')
+                                        <button class="btn btn-primary mr-2" type="submit">Terima</button>
+                                    </form>
+                                @endif
                             </td>
                         </tr>
                     @endforeach

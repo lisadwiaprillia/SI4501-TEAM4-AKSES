@@ -46,7 +46,6 @@ class InstitutionController extends Controller
     public function store(Request $request)
     {
         try {
-
             $institutionData = $request->validate([
                 'institution_name' => 'required|unique:institutions',
                 'institution_phone' => 'required|unique:institutions',
@@ -84,7 +83,6 @@ class InstitutionController extends Controller
             dd($error);
         }
     }
-
 
     // ! Restricted Access
 

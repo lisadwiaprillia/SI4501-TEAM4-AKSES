@@ -38,7 +38,11 @@
                                 <a class="nav-link @yield('home')" href="/">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @yield('education')" href="">Halaman Edukasi</a>
+                                <a class="nav-link @yield('education')" href="{{ url('/education') }}">Halaman Edukasi</a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a class="nav-link @yield('drug-data')" href="{{ url('/drug/data') }}">Halaman Obat</a>
                             </li>
                         </ul>
                         <div class="dropdown show">

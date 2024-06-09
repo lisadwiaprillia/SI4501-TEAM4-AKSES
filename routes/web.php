@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Post\EducationController;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
@@ -12,11 +13,11 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Drugs\DataController;
-use App\Http\Middleware\Apoteker;
+use App\Http\Controllers\Post\CategoryController;
+
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
 
@@ -82,60 +83,13 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::post('/health-institution', [InstitutionController::class, 'store']);
 });
 
+
+
 //* Roles user
 
 Route::middleware([AuthMiddleware::class])->group(function () {
 
-    //* Logout
-    Route::get('/logout', [AuthController::class, 'logout']);
-
-    route::get('/staff-dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
-
-
-
-
-
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
-
-
-
-
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
-});
-
-
-
-// * Restricted Access admin
-
-Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
-
-    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
-
-    // Start Of Role Section
-
-    Route::get('/roles', [RoleController::class, 'showRole']);
-
-    Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
-
-    Route::get('/create-roles-form', [RoleController::class, 'showCreateRoleForm']);
-    Route::post('/create-roles', [RoleController::class, 'storeRole']);
-    Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
-    Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
-
-    Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
-
-    // End of Role Section
-
-
     // Start Of Drug Data
-
-    Route::get('/drug/data', [DataController::class,  'show_drug_data']);
-
-    Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
 
     Route::get('/drugs/create-drug-data', [DataController::class, 'show_create_data_form']);
 
@@ -170,33 +124,38 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     // Start Of Drug Presentation
 
-    Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation']);
+    Route::get('/drug/presentations', [PresentationController::class,  'show_drug_presentation'])->name('drug-index');
+    Route::post('/drug/presentations', [PresentationController::class,  'show_drug_presentation'])->name('drug-index');
 
     Route::get('/drug/presentations/{presentation_id}', [PresentationController::class, 'show_detail_presentation']);
 
     Route::get('/drugs/create-drug-presentation', [PresentationController::class, 'show_create_presentation_form']);
 
-    Route::post('/drugs/create-drug-presentation', [PresentationController::class, 'store_drug_presentation_data']);
+    Route::post('/drugs/store/create-drug-presentation', [PresentationController::class, 'store_drug_presentation_data'])->name('presentation.create');
 
     Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController::class, 'show_edit_presentation_form']);
+
     Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
-    Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+    Route::delete('/drugs/delete/{presentation_id}', [PresentationController::class, 'destroy_presentation_data'])->name('presentation.delete');
 
     // End of Drug Presentation Section
 
+    //* Logout
+    Route::get('/logout', [AuthController::class, 'logout']);
 
-    // Categories of Post
+    Route::get('/staff-dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
 
-    Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
+    // Educational Data 
 
-    Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
-    Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
+    Route::get('/create-post', [EducationController::class, 'show_education_create_form']);
+    Route::post('/send-post', [EducationController::class, 'store_education_data']);
 
-    Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
-    Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
+    Route::get('/education/edit/{post_id}', [EducationController::class, 'show_edit_education_form']);
 
-    Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+    Route::patch('/education/edit/{post_id}', [EducationController::class, 'update_post_data']);
+
+    Route::delete('/education/delete/{post_id}', [EduCationController::class, 'delete_post']);
 
 
     //CRUD Drug Regulatory Classification
@@ -208,7 +167,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::get('/edit/regulatories/{id}', [RegulatoryController::class, 'editRegulatoryForm'])->name('Admin.Drugs.editRegulatory');
     Route::put('/update/regulatories/{id}', [RegulatoryController::class, 'updateRegulatoryData'])->name('Admin.Drugs.updateRegulatoryData');
 
-    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory'); //>>> DELETE IN MAINTENANCE <<<<
+    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory');
+
+    // End of Educational Data Section
+
 
 });
 
@@ -216,9 +178,55 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 // * Restricted Access admin
 
 Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
-    // route::get('/dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
-    
-    // End Of Categories of Post
+
+    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
+
+    // Start Of Role Section
+
+    Route::get('/roles', [RoleController::class, 'showRole']);
+
+    Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
+
+    Route::get('/create-roles-form', [RoleController::class, 'showCreateRoleForm']);
+    Route::post('/create-roles', [RoleController::class, 'storeRole']);
+    Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
+    Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
+
+    Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
+
+    // End of Role Section
+
+
+    //! Categories of Post
+
+    // Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
+
+    // Route::get('/add/categories', [CategoriesController::class, 'showCategoryForm'])->name('categories.showCategoryForm');
+    // Route::post('/add/categories', [CategoriesController::class, 'storeCategoryData']);
+
+    // Route::get('/edit/categories/{id}', [CategoriesController::class, 'editCategoryForm'])->name('categories.editCategoryForm');
+    // Route::put('/update/categories/{id}', [CategoriesController::class, 'updateCategoryData'])->name('categories.updateCategoryData');
+
+    // Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
+
+    //! End Of Categories of Post
+
+
+    // Categories Of Post
+    Route::get('/categories', [CategoryController::class, 'show_categories'])->name('categories');
+
+    Route::get('/categories/{category_id}', [CategoryController::class, 'show_detail_category']);
+
+    Route::get('/create-form-category', [CategoryController::class, 'show_category_form'])->name('category.create_form');
+
+    Route::post('/store-category-data', [CategoryController::class, 'store_category_data'])->name('category.post_form_data');
+
+    Route::get('/categories/edit/{category_id}', [CategoryController::class,  'show_edit_category_form']);
+    Route::patch('/categories/update/{category_id}', [CategoryController::class, 'update_category'])->name('category.update');
+
+    Route::delete('categories/delete/{category_id}', [CategoryController::class, 'delete_category'])->name('category.delete');
+
+    // End Of categories section
 
     // Start Of Insitution Data
 
@@ -239,14 +247,19 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/health-inzcvxstitution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
-
     // End Of Insitution Data
 
 
     // Start Of Staff Data
 
-
     Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
+
+
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+
+    // Accept
+    Route::patch('/health-staff/accept/{user_id}', [StaffController::class, 'accept_staff']);
 
     Route::get('/health-staff/{user_id}/edit', [StaffController::class, 'showEditStaffForm']);
     Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateStaffData']);
@@ -256,5 +269,13 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     // End OfStart Of Staff Data
 });
 
-Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {
-});
+
+Route::get('/drug/data', [DataController::class,  'show_drug_data']);
+
+Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
+
+
+
+Route::get('/education', [EducationController::class, 'show_education']);
+
+Route::get('/education/{post_id}', [EDucationController::class, 'show_detail_post']);

@@ -24,24 +24,25 @@ class AuthController extends Controller
 
         $UserEmailInput = $request->input('user_email');
 
-        $user = DB::table('users')->select('user_id', 'name', 'user_email', 'user_password', 'role_id')->where([['user_email', '=', $UserEmailInput], ['user_status', '=', 'diterima']])->get();
+        $user = User::with('role')->where([['user_email', '=', $UserEmailInput], ['user_status', '=', 'diterima']])->first();
 
         $UserPaswordInput = $request->input('user_password');
 
-        if (!count($user) == 1) {
+        if (!$user) {
             return back()->with('login', 'email atau password salah, atau akun belum aktif');
         }
 
-        if (!Hash::check($UserPaswordInput, $user[0]->user_password)) {
+        if (!Hash::check($UserPaswordInput, $user->user_password)) {
             $request->session()->put('isAuthorize', false);
             return back()->with('login', 'Proses Login Gagal');
         }
-        $request->session()->put('isAuthorize', true);
-        $request->session()->put("user", $user[0]->name);
-        $request->session()->put('user_id', $user[0]->user_id);
 
-        Session::put('isApoteker', $user[0]->role_id === 4 ? true : false);
-        Session::put('isAdmin', $user[0]->role_id === 3 ? true : false);
+        $request->session()->put('isAuthorize', true);
+        $request->session()->put("user", $user->name);
+        $request->session()->put('user_id', $user->user_id);
+
+        Session::put('isApoteker', $user->role->role_name == 'apoteker' ? true : false);
+        Session::put('isAdmin', $user->role->role_name == 'admin' ? true : false);
 
         if (Session::get('isAdmin' === false)) {
             return redirect(url('/staff-dashboard'))->with('loginSuccess', 'Proses Login berhasil');

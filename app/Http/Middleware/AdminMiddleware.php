@@ -20,7 +20,7 @@ class AdminMiddleware
         if ($request->session()->get('isAdmin')) {
             return $next($request);
         }
-    
+
         // Jika bukan admin, redirect ke halaman login atau halaman lainnya
         return redirect(route('login'))->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
     }
