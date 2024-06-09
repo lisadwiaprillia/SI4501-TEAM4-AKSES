@@ -40,7 +40,7 @@
                                     href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/admin-dashboard') }}">Beranda</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link @yield('education') mr-5" href="">Halaman Edukasi</a>
+                                <a class="nav-link @yield('education') mr-5" href="{{ Session::get('isAdmin') === false ? url('/staff-dashboard') : url('/posts') }}">Halaman Edukasi</a>
                             </li>
                         </ul>
 

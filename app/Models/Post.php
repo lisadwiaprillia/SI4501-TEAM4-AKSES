@@ -33,4 +33,9 @@ class Post extends Model
     {
         return $this->hasOne(Category::class, 'category_id', 'category_id');
     }
+
+    public function user()
+{
+    return $this->belongsTo(User::class);
+}
 }

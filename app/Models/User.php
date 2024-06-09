@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasOne(Role::class, 'role_id', 'role_id');
     }
 
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
     public function likes()
     {
         return $this->belongsToMany(Like::class);

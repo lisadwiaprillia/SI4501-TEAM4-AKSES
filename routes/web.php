@@ -16,6 +16,7 @@ use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Drugs\DataController;
+use App\Http\Controllers\Post\PostController;
 use App\Http\Middleware\Apoteker;
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
@@ -208,7 +209,21 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::get('/edit/regulatories/{id}', [RegulatoryController::class, 'editRegulatoryForm'])->name('Admin.Drugs.editRegulatory');
     Route::put('/update/regulatories/{id}', [RegulatoryController::class, 'updateRegulatoryData'])->name('Admin.Drugs.updateRegulatoryData');
 
-    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory'); //>>> DELETE IN MAINTENANCE <<<<
+    Route::delete('/delete/regulatories/{id}', [RegulatoryController::class, 'deleteRegulatory'])->name('Admin.Drugs.deleteRegulatory');
+
+    //Education Post
+    route::get('/posts', [PostController::class, 'educationIndex'])->name('educational');
+    // Route::get('/list/posts', [PostController::class, 'listPost'])->name('Admin.Education.listPost');
+
+    Route::get('/add/posts', [PostController::class, 'addPost'])->name('Admin.Education.addPost');
+    Route::post('/add/posts', [PostController::class, 'storePost']);
+
+    Route::get('/post/detail-post/{post_id}', [PostController::class, 'detailPost'])->name('Admin.Education.detailPost');
+
+    Route::get('/post/edit/{post_id}', [PostController::class, 'editPost'])->name('Admin.Education.editPost');
+    Route::patch('/post/update/{post_id}', [PostController::class, 'updatePost'])->name('Admin.Education.editPostData');
+
+    Route::delete('/post/delete/{post_id}', [PostController::class, 'deletePost'])->name('Admin.Education.deletePost');
 
 });
 
