@@ -55,7 +55,7 @@
                         <div class="form-group">
                         <label for="exampleInputEmail1">Kategori Konten</label>
                         <select class="form-control" name="category_id">
-                            <option value="{{''}}" selected disabled>Kategori Konten</option>
+                            <option value="" selected disabled>Kategori Konten</option>
                             @foreach ($Categories as $category)
                                 <option value="{{ $category->category_id }}">{{ $category->category_name }} </option>
                             @endforeach

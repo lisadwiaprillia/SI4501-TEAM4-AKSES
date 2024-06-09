@@ -79,7 +79,6 @@ class PostController extends Controller
 
     public function updatePost(Request $request, $post_id)
     {
-
         /////////////////////// TRY /////////////////////////
         $post = Post::findOrFail($request->post_id);
         $post->post_title = $request->post_title;
