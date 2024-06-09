@@ -20,7 +20,7 @@ use App\Http\Controllers\Post\CategoryController;
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
 
-    Route::get('/register', [AuthController::class, 'showRegisterForm']); //guest
+    Route::get('/register', [AuthController::class, 'showRegisterForm']); //guests
 
     Route::post('/register', [AuthController::class, 'register']); //guest
 
