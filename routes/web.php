@@ -151,13 +151,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
 
     // End of Educational Data Section
 
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
 
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
 });
 
 
@@ -241,6 +235,13 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     // Start Of Staff Data
 
     Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
+
+
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+
+    // Accept
+    Route::patch('/health-staff/accept/{user_id}', [StaffController::class, 'accept_staff']);
 
     Route::get('/health-staff/{user_id}/edit', [StaffController::class, 'showEditStaffForm']);
     Route::patch('/health-staff/{user_id}/update', [StaffController::class, 'updateStaffData']);

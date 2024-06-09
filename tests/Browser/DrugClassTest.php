@@ -76,7 +76,7 @@ class DrugClassTest extends DuskTestCase
                 ->type('user_password', 'admin123')
                 ->press('Login')
                 ->visit('http://127.0.0.1:8001/drugs/classes')
-                ->assertSee('Manajemen Kelas Obat');
+                ->assertSee('Manajemen Klasifikasi Obat');
         });
     }
 
@@ -87,7 +87,7 @@ class DrugClassTest extends DuskTestCase
                 ->click('.medicine-add-btn')
                 ->waitForLocation('/drugs/class/create-form')
                 ->assertPathIs('/drugs/class/create-form')
-                ->assertSee('Formulir Pembuatan Kelas Obat')
+                ->assertSee('Formulir Pembuatan Klasifikasi Obat')
                 ->type('class_name', 'Cough & Cold Preparations')
                 ->type('class_desc', 'Cough and cold preparations are a class of medications used to alleviate symptoms associated with the common cold, influenza, and other respiratory tract infections. These preparations can be available in various forms, including tablets, capsules, syrups, lozenges, nasal sprays, and inhalants.')
                 ->press('submit')
@@ -101,7 +101,7 @@ class DrugClassTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('http://127.0.0.1:8001/drugs/classes')
                 ->click('.detail-button:first-child')
-                ->assertSee('Nama Kelas Obat');
+                ->assertSee('Nama Klasifikasi Obat');
         });
     }
 
@@ -112,7 +112,7 @@ class DrugClassTest extends DuskTestCase
         $this->browse(function (Browser $browser) {
             $browser->visit('http://127.0.0.1:8001/drugs/classes')
                 ->click('.update-button.btn-success')
-                ->assertSee('Formulir Perubahan Data Kelas Obat')
+                ->assertSee('Formulir Perubahan Data Klasifikasi Obat')
                 ->type('class_desc', 'change the a description')
                 ->press('Edit')
                 ->assertSee('Berhasil Di Update');

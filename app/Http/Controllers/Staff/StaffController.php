@@ -95,7 +95,7 @@ class StaffController extends Controller
     public function burnStaff(Request $request)
     {
         try {
-            $staff = User::find($request->user_id)->first();
+            $staff = User::find($request->user_id);
             $staff->delete();
             Session::flash('success-to-delete-staff', 'Data Pegawai ' . $staff->name . ' Berhasil Dihapus');
             return back();
@@ -112,7 +112,20 @@ class StaffController extends Controller
             'total_admin' => User::where('role_id', '=', '3')->count(),
             'total_apoteker' => User::where('role_id', '=', '4')->count(),
             'total_user' => User::count(),
-            'total_normal_user' => User::where('role_id', '=', '1')->count(),
         ]);
+    }
+
+    public function accept_staff(Request $request)
+    {
+        try {
+            $staff = User::with('role')->findOrFail($request->user_id);
+            $staff->user_status = 'diterima';
+            $staff->role_id = 3;
+            $staff->update();
+            return back();
+        } catch (\Throwable $err) {
+            Session::flash('error', $err->getMessage());
+            return back();
+        }
     }
 }

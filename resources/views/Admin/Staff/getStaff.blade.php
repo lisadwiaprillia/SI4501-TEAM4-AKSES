@@ -1,11 +1,11 @@
 <!-- Import Template -->
-@extends('src.Template.main-template')
+@extends('src.Admin.Template.main-template')
 
 <!-- Set Title Halaman -->
 @section('title', 'Akses')
 
 <!-- Set class active -->
-@section('check', 'active')
+@section('staff', 'active')
 
 <!-- Import Layouting -->
 @section('content')

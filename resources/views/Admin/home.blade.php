@@ -161,7 +161,6 @@
                             <ul class="list-unstyled mt-2 mb-4">
                                 <li>Total Admin: {{ $total_admin }}</li>
                                 <li>Total Apoteker: {{ $total_apoteker }}</li>
-                                <li>Total Pengguna Biasa: {{ $total_normal_user }}</li>
                             </ul>
                         </div>
                     </div>

@@ -90,8 +90,7 @@ class RoleTest extends DuskTestCase
                 ->click('.detail-button:first-child')
                 ->waitForLocation('/roles/' . $first_record->role_id . '/details')
                 ->assertSee('Nama Role')
-                ->assertSee('Deskripsi Role')
-                ->assertPathIs('/roles/' . $first_record->role_id  . '/details');
+                ->assertSee('Deskripsi Role');
         });
     }
 
