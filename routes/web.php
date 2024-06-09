@@ -127,9 +127,10 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::post('/drugs/create-drug-presentation', [PresentationController::class, 'store_drug_presentation_data']);
 
     Route::get('/drugs/{presentation_id}/edit-presentation', [PresentationController::class, 'show_edit_presentation_form']);
+
     Route::put('/drugs/{presentation_id}/update-presentation', [PresentationController::class, 'update_drug_presentation_data']);
 
-    Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation0_data']);
+    Route::delete('/drugs/{presentation_id}/delete', [PresentationController::class, 'destroy_presentation_data']);
 
     // End of Drug Presentation Section
 
@@ -177,7 +178,6 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
 
     // End of Role Section
-
 
 
     //! Categories of Post

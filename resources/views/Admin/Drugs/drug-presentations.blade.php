@@ -8,17 +8,17 @@
                 <main>
                     <div class="container">
 
-                        @if (Session::has('success-to-delete-drug-presentation'))
+                        @if (Session::has('error'))
                             <div class="alert alert-danger alert-dismissible fade show text-capitalize" role="alert">
-                                {{ Session::get('success-to-delete-drug-presentation') }}
+                                {{ Session::get('error') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
                         @endif
-                        @if (Session::has('success-to-update-drug-presentation'))
+                        @if (Session::has('success'))
                             <div class="alert alert-success alert-dismissible fade show text-capitalize" role="alert">
-                                {{ Session::get('success-to-update-drug-presentation') }}
+                                {{ Session::get('success') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -54,7 +54,7 @@
                                                     <a href="{{ url('/drugs/' . $drug_presentation->presentation_id . '/edit-presentation') }}"
                                                         class="btn btn-success mr-2">Edit</a>
 
-                                                    <form class="d-inline"
+                                                    <form class="d-inline   "
                                                         action="{{ url('/drugs/' . $drug_presentation->presentation_id . '/delete') }}"
                                                         method="POST">
                                                         @csrf
