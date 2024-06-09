@@ -68,4 +68,8 @@ class User extends Authenticatable
         return $this->belongsToMany(Like::class);
     }
 
+    public function post()
+    {
+        return $this->hasMany(Post::class, 'user_id', 'user_id');
+    }
 }

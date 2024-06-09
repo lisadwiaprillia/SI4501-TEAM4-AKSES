@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Post\EducationController;
 use App\Http\Controllers\Citizen\CitizenController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
@@ -11,11 +12,11 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Middleware\GuestMiddleware;
 use App\Http\Middleware\AuthMiddleware;
-use App\Http\Middleware\UserMiddleware;
 use App\Http\Controllers\Staff\DashboardController;
 use App\Http\Controllers\Categories\CategoriesController;
 use App\Http\Controllers\Drugs\DataController;
-use App\Http\Middleware\Apoteker;
+use App\Http\Controllers\Post\CategoryController;
+
 
 Route::middleware([GuestMiddleware::class,])->group(function () {
 
@@ -76,60 +77,13 @@ Route::middleware([GuestMiddleware::class,])->group(function () {
     Route::post('/health-institution', [InstitutionController::class, 'store']);
 });
 
+
+
 //* Roles user
 
 Route::middleware([AuthMiddleware::class])->group(function () {
 
-    //* Logout
-    Route::get('/logout', [AuthController::class, 'logout']);
-
-    route::get('/staff-dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
-
-
-
-
-
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
-
-
-
-
-    // * Drug Laporan Stock Obat
-    Route::get('/health-staff', [StaffController::class, 'showStaff']);
-    Route::post('/health-staff', [StaffController::class, 'store1']);
-});
-
-
-
-// * Restricted Access admin
-
-Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
-
-    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
-
-    // Start Of Role Section
-
-    Route::get('/roles', [RoleController::class, 'showRole']);
-
-    Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
-
-    Route::get('/create-roles-form', [RoleController::class, 'showCreateRoleForm']);
-    Route::post('/create-roles', [RoleController::class, 'storeRole']);
-    Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
-    Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
-
-    Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
-
-    // End of Role Section
-
-
     // Start Of Drug Data
-
-    Route::get('/drug/data', [DataController::class,  'show_drug_data']);
-
-    Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
 
     Route::get('/drugs/create-drug-data', [DataController::class, 'show_create_data_form']);
 
@@ -179,8 +133,60 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     // End of Drug Presentation Section
 
+    //* Logout
+    Route::get('/logout', [AuthController::class, 'logout']);
 
-    // Categories of Post
+    Route::get('/staff-dashboard', [DashboardController::class, 'getDashboard'])->name('admin.home');
+
+    // Educational Data 
+
+    Route::get('/create-post', [EducationController::class, 'show_education_create_form']);
+    Route::post('/send-post', [EducationController::class, 'store_education_data']);
+
+    Route::get('/education/edit/{post_id}', [EducationController::class, 'show_edit_education_form']);
+
+    Route::patch('/education/edit/{post_id}', [EducationController::class, 'update_post_data']);
+
+    Route::delete('/education/delete/{post_id}', [EduCationController::class, 'delete_post']);
+
+    // End of Educational Data Section
+
+    // * Drug Laporan Stock Obat
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+
+    // * Drug Laporan Stock Obat
+    Route::get('/health-staff', [StaffController::class, 'showStaff']);
+    Route::post('/health-staff', [StaffController::class, 'store1']);
+});
+
+
+
+
+// * Restricted Access admin
+
+Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(function () {
+
+    Route::get('/admin-dashboard', [StaffController::class, 'show_admin_dashboard']);
+
+    // Start Of Role Section
+
+    Route::get('/roles', [RoleController::class, 'showRole']);
+
+    Route::get('/roles/{role_id}/details', [RoleController::class, 'showDetailRole']);
+
+    Route::get('/create-roles-form', [RoleController::class, 'showCreateRoleForm']);
+    Route::post('/create-roles', [RoleController::class, 'storeRole']);
+    Route::get('/update-roles/{role_id}/edit', [RoleController::class, 'showEditRoleForm']);
+    Route::patch('/update-roles/{role_id}/update', [RoleController::class, 'updateForm']);
+
+    Route::delete('/delete-role/{role_id}/delete', [RoleController::class, 'destoryRoleData']);
+
+    // End of Role Section
+
+
+
+    //! Categories of Post
 
     Route::get('/list/categories', [CategoriesController::class, 'listCategories'])->name('categories.listCategories');
 
@@ -192,7 +198,23 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/delete/categories/{id}', [CategoriesController::class, 'deleteCategory'])->name('categories.deleteCategory');
 
-    // End Of Categories of Post
+    //! End Of Categories of Post
+
+
+    // Categories Of Post
+    Route::get('/categories', [CategoryController::class, 'show_categories'])->name('categories');
+
+    Route::get('/categories/{category_id}', [CategoryController::class, 'show_detail_category']);
+
+    Route::get('/categories/create', [CategoryController::class, 'show_category_form']);
+    Route::post('/categories/create', [CategoryController::class, 'store_category_data']);
+
+    Route::get('/categories/edit/{category_id}', [CategoryController::class,  'show_edit_category_form']);
+    Route::patch('/categories/edit/{category_id}', [CategoryController::class, 'update_category']);
+
+    Route::delete('categories/{category_id}/delete', [CategoryController::class, 'delete_category']);
+
+    // End Of categories section
 
     // Start Of Insitution Data
 
@@ -213,12 +235,10 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
 
     Route::delete('/health-inzcvxstitution/{institution_id}/delete', [InstitutionController::class, 'destroyInstitution']);
 
-
     // End Of Insitution Data
 
 
     // Start Of Staff Data
-
 
     Route::get('/health-staff/{user_id}/details', [StaffController::class, 'showStaffDetail']);
 
@@ -230,5 +250,13 @@ Route::middleware([AuthMiddleware::class, AdminMiddleware::class])->group(functi
     // End OfStart Of Staff Data
 });
 
-Route::middleware([AuthMiddleware::class, Apoteker::class,])->group(function () {
-});
+
+Route::get('/drug/data', [DataController::class,  'show_drug_data']);
+
+Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
+
+
+
+Route::get('/education', [EducationController::class, 'show_education']);
+
+Route::get('/education/{post_id}', [EDucationController::class, 'show_detail_post']);
