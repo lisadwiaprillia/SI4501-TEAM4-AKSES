@@ -38,7 +38,8 @@
                                         more-or-less normal distribution of letters, as opposed to
                                     </p>
 
-                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}" target="_new">
+                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}" target="_new"
+                                        class="share-button">
                                         Hubungi Kami
                                     </a>
                                 </div>
@@ -71,8 +72,8 @@
                                         when looking at its layout. The point of using Lorem Ipsum is that it has a
                                         more-or-less normal distribution of letters, as opposed to
                                     </p>
-                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}"
-                                        target="_blank">
+                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }} "
+                                        class="share-button" target="_blank">
                                         Hubungi Kami
                                     </a>
                                 </div>
@@ -105,8 +106,8 @@
                                         when looking at its layout. The point of using Lorem Ipsum is that it has a
                                         more-or-less normal distribution of letters, as opposed to
                                     </p>
-                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}"
-                                        target="_blank">
+                                    <a href="{{ url('https://api.whatsapp.com/send?phone=6282158204550') }}" target="_blank"
+                                        class="share-button">
                                         Hubungi Kami
                                     </a>
                                 </div>
