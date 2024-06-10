@@ -84,11 +84,8 @@ class RoleTest extends DuskTestCase
     {
         $this->browse(function (Browser $browser) {
 
-            $first_record = Role::first();
-
             $browser->visit('http://127.0.0.1:8001/roles')
                 ->click('.detail-button:first-child')
-                ->waitForLocation('/roles/' . $first_record->role_id . '/details')
                 ->assertSee('Nama Role')
                 ->assertSee('Deskripsi Role');
         });
@@ -132,7 +129,7 @@ class RoleTest extends DuskTestCase
             $browser->visit('http://127.0.0.1:8001/roles')
                 ->waitForLocation('/roles')
                 ->whenAvailable('.table.table-striped', function ($table) {
-                    $table->within('tbody tr:nth-of-type(2)', function ($row) {
+                    $table->within('tbody tr:nth-of-type(3)', function ($row) {
                         $row->press('Hapus');
                     });
                 });

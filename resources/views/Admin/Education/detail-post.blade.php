@@ -13,9 +13,8 @@
 
         <p class="mt-3 post-body">{!! $post->post_body !!}</p>
 
+        <button type="button" id="copyUrlButton" class="btn btn-primary mr-2">Share</button>
 
-
-        <button id="copyUrlButton" class="btn btn-primary mr-2">Share</button>
         <a href="{{ url('/education') }}">Kembali</a>
     </div>
 
