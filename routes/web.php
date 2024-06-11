@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Post\EducationController;
 use App\Http\Controllers\Citizen\CitizenController;
+use App\Http\Controllers\Citizen\CommentController;
 use App\Http\Controllers\Role\RoleController;
 use App\Http\Controllers\Institution\InstitutionController;
 use App\Http\Controllers\Drugs\ClassController;
@@ -158,6 +159,7 @@ Route::middleware([AuthMiddleware::class])->group(function () {
     Route::delete('/education/delete/{post_id}', [EduCationController::class, 'delete_post']);
 
 
+
     //CRUD Drug Regulatory Classification
     Route::get('/add/regulatories', [RegulatoryController::class, 'showRegulatoryForm'])->name('Admin.Drugs.showRegulatory');
     Route::post('/add/regulatories', [RegulatoryController::class, 'storeRegulatoryData']);
@@ -278,4 +280,10 @@ Route::get('/drug/data/{drug_id}', [DataController::class, 'show_detail_data']);
 
 Route::get('/education', [EducationController::class, 'show_education']);
 
-Route::get('/education/{post_id}', [EDucationController::class, 'show_detail_post']);
+Route::get('/education/{post_id}', [EducationController::class, 'show_detail_post']);
+
+Route::post('/comments', [CommentController::class, 'store'])->name('comments.store');
+
+Route::put('/comments/{id}', [CommentController::class, 'update'])->name('comments.update');
+
+Route::delete('/comments/{id}', [CommentController::class, 'destroy'])->name('comments.destroy');
