@@ -17,10 +17,10 @@ class AuthMiddleware
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (Session::get('isAuthorize') === true) {
+        if (Session::has('isAuthorize') && Session::get('isAuthorize') === true) {
             return $next($request);
         } else {
-            return redirect(url('/'));
+            return redirect(url('/login'));
         }
     }
 }

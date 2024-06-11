@@ -5,6 +5,7 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AdminMiddleware
 {
@@ -17,11 +18,9 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if ($request->session()->get('isAdmin')) {
+        if (Session::get('isAdmin') === true && Session::get('isAuthorize') === true) {
             return $next($request);
         }
-
-        // Jika bukan admin, redirect ke halaman login atau halaman lainnya
         return redirect(route('login'))->with('error', 'Anda tidak memiliki izin untuk mengakses halaman ini.');
     }
 }
