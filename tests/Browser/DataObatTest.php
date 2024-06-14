@@ -25,15 +25,7 @@ class DataObatTest extends DuskTestCase
                     ->visit('http://127.0.0.1:8000/drug/data')
                     ->assertSee('Manajemen Data Obat')
                     ->assertSee('Paracetamol')
-                    ->press('Hapus');
-                    // ->visit('http://127.0.0.1:8000/drug/7/delete')
-                    // ->waitForDialog()
-                    // ->acceptDialog();
-
-                    // Klik tombol "Data Obat"
-                    // ->waitFor('.DataObat', 10) // Perhatikan penamaan selector ini
-                    // ->click('.DataObat')
-                    
+                    ->press('Hapus');                    
                     // // Pastikan Anda berada di halaman "Create Data Obat"
                     // ->assertPathIs('/menuobat/create')
                     // ->assertSee('Form Pembuatan Data Obat')
